@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './Header.module.css'
 import { Link } from 'react-router-dom'
 
@@ -17,17 +17,36 @@ const Header = () => {
   const dispatch = useDispatch()
   const [toggle, setToggle] = useState(false)
 
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+
   const toggleHandler = () => {
-    console.log(toggle)
     setToggle(!toggle)
     let html = document.getElementsByTagName('html')[0]
 
-    if (!toggle) {
-      html.style.cssText = 'overflow-y:hidden'
+    if (windowWidth <= 850) {
+      if (!toggle) {
+        html.style.cssText = 'overflow-y:hidden'
+      } else {
+        html.style.cssText = 'overflow-y:initial'
+      }
     } else {
-      html.style.cssText = 'overflow-y:initial'
+      return
     }
   }
+
+  const handleWindowSizeChange = () => {
+    setWindowWidth(window.innerWidth)
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowSizeChange)
+
+    return () => {
+      window.removeEventListener('resize', handleWindowSizeChange)
+    }
+  }, [])
+  console.log(windowWidth)
+
   return (
     <header className={styles.container}>
       <div className={styles.innerContainer}>
