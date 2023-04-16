@@ -3,24 +3,24 @@ import styles from './Signup.module.css'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 import { Link, useNavigate } from 'react-router-dom'
-import { createUserThunk } from '../../store/userSlice'
-import { useDispatch } from 'react-redux'
+import { createUserThunk, getUserError } from '../../store/userSlice'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Signup = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-
+  const error = useSelector(getUserError)
   const formSubmit = async (values, actions) => {
     actions.resetForm()
 
     // create user and get token from backend as a cookie
-    dispatch(createUserThunk(values))
-      .then(() => {
+    dispatch(createUserThunk(values)).then((e) => {
+      if (e.payload.status === 'error') {
+        return
+      } else {
         navigate('/')
-      })
-      .catch((e) => {
-        console.log(e)
-      })
+      }
+    })
   }
 
   const validationSchema = yup.object().shape({
@@ -56,6 +56,9 @@ const Signup = () => {
           onSubmit={handleSubmit}
           className={styles.form}
         >
+          <label>
+            {!values.name && error && <p className={styles.error}>{error}</p>}
+          </label>
           <label htmlFor="name">
             Name
             <input

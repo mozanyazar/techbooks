@@ -1,31 +1,55 @@
 import React, { useState } from 'react'
 import styles from './Login.module.css'
-import { Link } from 'react-router-dom'
-import { login } from '../../store/userSlice'
-import { useDispatch } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { getUserError, login } from '../../store/userSlice'
+import { useDispatch, useSelector } from 'react-redux'
 import { forgotPassword } from '../../services/auth'
 
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [userForgotPassword, setUserForgotPassword] = useState(false)
-  const dispatch = useDispatch()
+  const err = useSelector(getUserError)
 
-  function handleSubmit(e) {
+  // switch the forms (login || forgotpassword)
+  const [userForgotPassword, setUserForgotPassword] = useState(false)
+
+  // fotget password message state
+  const [resetMessage, setResetMessage] = useState('')
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  // login
+  async function handleSubmit(e) {
     e.preventDefault()
-    dispatch(login({ email, password }))
+    const res = await dispatch(login({ email, password }))
+
+    // set input emty
     setPassword('')
     setEmail('')
+
+    // if success navigate to homepage
+    if (res.payload.status === 'success') {
+      navigate('/')
+    }
   }
 
+  // forgot password
   async function forgotHandler(e) {
     e.preventDefault()
     try {
       const response = await forgotPassword({ email })
-      console.log(response)
+      setResetMessage(response.message)
+
+      if (response.status === 'success') {
+        setTimeout(() => {
+          navigate('/')
+        }, 2000)
+      }
     } catch (error) {}
     setEmail('')
   }
+
   return (
     <main className={styles.container}>
       <div className={styles.title}>
@@ -37,6 +61,9 @@ const Login = () => {
             onSubmit={(e) => handleSubmit(e)}
             className={styles.form}
           >
+            <label>
+              {!email && err && <p className={styles.error}>{err}</p>}
+            </label>
             <label htmlFor="email">
               Email
               <input
@@ -91,6 +118,9 @@ const Login = () => {
             onSubmit={(e) => forgotHandler(e)}
             className={`${styles.form} ${styles.forgotForm}`}
           >
+            {!email && resetMessage && (
+              <p className={styles.errorMessage}>{resetMessage}</p>
+            )}
             <label htmlFor="email">
               Email
               <input

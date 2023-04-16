@@ -101,6 +101,13 @@
   justify-content: center;
   height: 250px;
 }
+.errorMessage {
+  color: rgba(255, 0, 0, 0.682);
+  font-weight: 700;
+  font-family: var(--font-primary);
+  font-size: 14px;
+  margin-bottom: 10px;
+}
 
 @keyframes shake {
   0% {

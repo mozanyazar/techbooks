@@ -69,9 +69,7 @@
   position: relative;
 }
 .form label .error {
-  position: absolute;
   right: 0;
-  bottom: -19px;
   color: rgba(255, 0, 0, 0.728);
   font-size: 13px;
 }
