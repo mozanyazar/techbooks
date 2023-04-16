@@ -60,12 +60,14 @@ const userSlice = createSlice({
         state.status = 'pending'
       })
       .addCase(createUserThunk.fulfilled, (state, action) => {
-        state.user = action.payload.data.user
-        state.status = 'succeeded'
+        if (action.payload.status === 'error') {
+          state.error = 'This email is already in use'
+        } else {
+          state.user = action.payload.data.user
+          state.status = 'succeeded'
+        }
       })
-      .addCase(createUserThunk.rejected, (state, action) => {
-        console.log(action.payload)
-      })
+      .addCase(createUserThunk.rejected, (state, action) => {})
 
       // Send a request to the backend and check the cookie.
       .addCase(isUserExist.pending, (state, action) => {
@@ -79,9 +81,6 @@ const userSlice = createSlice({
           state.status = 'idle'
         }
       })
-      .addCase(isUserExist.rejected, (state, action) => {
-        console.log(action.payload)
-      })
 
       // logout
       .addCase(logout.fulfilled, (state, action) => {
@@ -91,8 +90,12 @@ const userSlice = createSlice({
 
       // login
       .addCase(login.fulfilled, (state, action) => {
-        state.user = action.payload.data.user
-        state.status = 'succeeded'
+        if (action.payload.status === 'fail') {
+          state.error = action.payload.message
+        } else {
+          state.user = action.payload.data.user
+          state.status = 'succeeded'
+        }
       })
 
       // reset password
