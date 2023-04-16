@@ -17,35 +17,16 @@ const Header = () => {
   const dispatch = useDispatch()
   const [toggle, setToggle] = useState(false)
 
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-
   const toggleHandler = () => {
     setToggle(!toggle)
     let html = document.getElementsByTagName('html')[0]
 
-    if (windowWidth <= 850) {
-      if (!toggle) {
-        html.style.cssText = 'overflow-y:hidden'
-      } else {
-        html.style.cssText = 'overflow-y:initial'
-      }
+    if (!toggle) {
+      html.classList.add('active')
     } else {
-      return
+      html.classList.remove('active')
     }
   }
-
-  const handleWindowSizeChange = () => {
-    setWindowWidth(window.innerWidth)
-  }
-
-  useEffect(() => {
-    window.addEventListener('resize', handleWindowSizeChange)
-
-    return () => {
-      window.removeEventListener('resize', handleWindowSizeChange)
-    }
-  }, [])
-  console.log(windowWidth)
 
   return (
     <header className={styles.container}>
