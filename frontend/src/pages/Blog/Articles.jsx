@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
-import { useDispatch, useSelector } from 'react-redux'
-import { allBlogs, getBlogs, getBlogsStatus } from '../../store/blogSlice'
+import { useSelector } from 'react-redux'
+import { getBlogs } from '../../store/blogSlice'
 import ArticleCard from '../../components/UI/ArticleCard'
 import styles from './Blog.module.css'
 
