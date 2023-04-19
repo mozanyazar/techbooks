@@ -7,18 +7,22 @@ import helmet from 'helmet'
 import hpp from 'hpp'
 import morgan from 'morgan'
 import xss from 'xss-clean'
-
+import fileUpload from 'express-fileupload'
 // routes
-// import errorHandler from './controllers/errorController.js'
-import authRouter from './routes/authRoutes.js'
 import errorHandler from './controllers/errorController.js'
+import authRouter from './routes/authRoutes.js'
+import blogRouter from './routes/blogRoutes.js'
+import commentsRouter from './routes/commentRoutes.js'
 
 const app = express()
+
+app.use(express.static('uploads/images'))
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'))
 }
 
+app.use(fileUpload())
 app.use(cookieParser())
 app.use(helmet())
 app.use(
@@ -51,9 +55,9 @@ app.use(
 )
 
 app.use('/api/v1/users', authRouter)
+app.use('/api/v1/blogs', blogRouter)
+app.use('/api/v1/comments', commentsRouter)
 
 app.use(errorHandler)
 
-
 export default app
-
