@@ -1,8 +1,8 @@
 import crypto from 'crypto'
-import jwt from 'jsonwebtoken'
 import User from '../models/userModel.js'
 import catchAsync from '../utils/catchAsync.js'
 import util from 'util'
+import jwt from 'jsonwebtoken'
 import AppError from '../utils/AppError.js'
 import nodemailer from 'nodemailer'
 
@@ -98,22 +98,22 @@ export const logIn = catchAsync(async (req, res, next) => {
 })
 
 // send link when user forgot the password
-
-export const forgotPassword = catchAsync(async (req, res, next) => {
+export const forgotPassword = async (req, res, next) => {
   const { email } = req.body
 
   const user = await User.findOne({ email: email })
-  console.log('test1')
   if (user === null) {
-    return next(new AppError('Bu email ile kullanıcı bulunamadı.', 404))
+    return next(
+      new AppError(
+        'Please make sure you have entered your email address correctly',
+        404
+      )
+    )
   }
-  console.log('test2')
 
   const resetToken = await user.createPasswordResetToken()
-  console.log('test3')
 
   await user.save({ validateBeforeSave: false })
-  console.log('test4')
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -122,7 +122,6 @@ export const forgotPassword = catchAsync(async (req, res, next) => {
       pass: 'dbmrkjjcfnixxsdj',
     },
   })
-  console.log('test5')
 
   const mailOptions = {
     from: 'testdenemenodejs@gmail.com',
@@ -132,17 +131,19 @@ export const forgotPassword = catchAsync(async (req, res, next) => {
     <p>Şifrenizi sıfırlama talebinde bulundunuz. Buraya tıklayınız <a href="http://localhost:3000/reset_password/${resetToken}">buraya tıklayın</a></p>
     <p>Teşekkür ederiz.</p>`,
   }
-  console.log('test6')
 
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
       console.log(error)
-      console.log('test7 error')
     } else {
       console.log('E-mail sent: ' + info.response)
+      res.status(200).json({
+        status: 'success',
+        message: 'Check your email, Password reset link sent',
+      })
     }
   })
-})
+}
 
 // password reset
 export const resetPassword = catchAsync(async (req, res) => {
