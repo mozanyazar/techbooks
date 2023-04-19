@@ -1,0 +1,120 @@
+@import url('../../index.css');
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  width: 100%;
+  background-color: var(--dark-blue);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(20px, 5vw, 60px) 0;
+}
+.title h1 {
+  color: #fff;
+  font-size: clamp(30px, 5vw, 50px);
+  font-family: var(--font-primary);
+  position: relative;
+  letter-spacing: 0.02em;
+}
+.title h1::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -34px;
+  width: 50px;
+  height: 2px;
+  background-color: var(--yellow);
+  transform: translateX(-50%);
+}
+.title p {
+  margin-top: 60px;
+  font-size: clamp(14px, 1.6vw, 19px);
+  font-family: var(--font-secondary);
+  color: #b4c7e7;
+  text-align: center;
+}
+
+.blogsWrapper {
+  width: 100%;
+  background-color: #f5f8fc;
+}
+.blogsInner {
+  max-width: 1300px;
+  width: 98%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: clamp(70px, 15vw, 150px) 0;
+}
+.categories {
+  position: relative;
+  display: flex;
+  width: 17em;
+  height: 3em;
+  border-radius: 0.25em;
+  overflow: hidden;
+}
+.categories select {
+  appearance: none;
+  outline: 0;
+  border: 0;
+  box-shadow: none;
+  /* Personalize */
+  flex: 1;
+  padding: 0 1em;
+  color: #fff;
+  background-color: #2c3e50;
+  background-image: none;
+  cursor: pointer;
+  font-family: var(--font-primary);
+  font-size: 18px;
+}
+
+.categories::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1em;
+  background-color: #34495e;
+  transition: 0.25s all ease;
+  pointer-events: none;
+}
+/* Transition */
+.categories:hover::after {
+  color: var(--dark-blue);
+}
+.categories select::-ms-expand {
+  display: none;
+}
+
+.CardsWrapper {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: space-between;
+  margin-top: 40px;
+  row-gap: 60px;
+}
+
+@media screen and (max-width: 900px) {
+  .title p {
+    width: 85%;
+  }
+  .CardsWrapper {
+    grid-template-columns: repeat(2, clamp(290px, 42.2222222222vw, 380px));
+  }
+}
+
+@media screen and (max-width: 610px) {
+  .CardsWrapper {
+    display: flex;
+    flex-direction: column;
+  }
+}
