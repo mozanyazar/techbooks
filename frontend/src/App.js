@@ -1,39 +1,55 @@
-import React, { Suspense, useEffect } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-// component
+// Component
 import Header from './components/Header/Header'
 
 // Redux
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserStatus, isUserExist } from './store/userSlice'
 
-// pages
-import NotFound from './pages/NotFound/NotFound'
-import BlogPanel from './pages/Blog/BlogPanel/BlogPanel'
-import Login from './pages/Login/Login'
-import Signup from './pages/Signup/Signup'
-import Home from './pages/Home/Home'
-
-// protected route
+// Protected route
 import ProtectedRoute from './ProtectedRoute/ProtectedRoute'
+// Loading animation
 import Loading from './Loading/Loading'
 
 const App = () => {
   const dispatch = useDispatch()
   const userStatus = useSelector(getUserStatus)
 
-  const Blog = React.lazy(() => import('./pages/Blog/Blog'))
+  // fake delay for show loading component
+  function fakeDelay(ms) {
+    return (promise) =>
+      promise.then(
+        (data) =>
+          new Promise((resolve) => {
+            setTimeout(() => resolve(data), ms)
+          })
+      )
+  }
 
+  // Dynamic imports
+  const Blog = React.lazy(() => fakeDelay(1400)(import('./pages/Blog/Blog')))
+  const Home = React.lazy(() => fakeDelay(1400)(import('./pages/Home/Home')))
+  const NotFound = React.lazy(() =>
+    fakeDelay(1400)(import('./pages/NotFound/NotFound'))
+  )
+  const BlogPanel = React.lazy(() =>
+    fakeDelay(1400)(import('./pages/Blog/BlogPanel/BlogPanel'))
+  )
+  const Login = React.lazy(() => fakeDelay(1400)(import('./pages/Login/Login')))
+  const Signup = React.lazy(() =>
+    fakeDelay(1400)(import('./pages/Signup/Signup'))
+  )
   const ResetPassword = React.lazy(() =>
-    import('./pages/ResetPassword/ResetPassword')
+    fakeDelay(1400)(import('./pages/ResetPassword/ResetPassword'))
   )
 
   useEffect(() => {
     if (userStatus === 'idle') {
       dispatch(isUserExist())
     }
-  }, [])
+  }, [dispatch])
 
   return (
     <BrowserRouter>
@@ -41,22 +57,30 @@ const App = () => {
       <Routes>
         <Route
           path="/"
-          element={<Home />}
+          element={
+            <Suspense fallback={<Loading />}>
+              <Home />
+            </Suspense>
+          }
         />
         <Route
           path="/login"
           element={
-            <ProtectedRoute isUser={true}>
-              <Login />
-            </ProtectedRoute>
+            <Suspense fallback={<Loading />}>
+              <ProtectedRoute isUser={true}>
+                <Login />
+              </ProtectedRoute>
+            </Suspense>
           }
         />
         <Route
           path="/signup"
           element={
-            <ProtectedRoute isUser={true}>
-              <Signup />
-            </ProtectedRoute>
+            <Suspense fallback={<Loading />}>
+              <ProtectedRoute isUser={true}>
+                <Signup />
+              </ProtectedRoute>
+            </Suspense>
           }
         />
         <Route
@@ -78,14 +102,20 @@ const App = () => {
         <Route
           path="/blog_panel"
           element={
-            <ProtectedRoute isUser={false}>
-              <BlogPanel />
-            </ProtectedRoute>
+            <Suspense fallback={<Loading />}>
+              <ProtectedRoute isUser={false}>
+                <BlogPanel />
+              </ProtectedRoute>
+            </Suspense>
           }
         />
         <Route
           path="*"
-          element={<NotFound />}
+          element={
+            <Suspense fallback={<Loading />}>
+              <NotFound />
+            </Suspense>
+          }
         />
       </Routes>
     </BrowserRouter>
