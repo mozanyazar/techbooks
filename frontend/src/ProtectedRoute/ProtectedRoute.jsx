@@ -15,13 +15,9 @@ const ProtectedRoute = ({ children, isUser }) => {
     }
   }, [dispatch, user])
 
-  if (userStatus === 'pending') {
-    return <Loading />
-  }
-
   // if we want the user exist
   if (!isUser) {
-    if (userStatus === 'success') {
+    if (user.length === 0) {
       return <Navigate to="/login" />
     }
     return children
