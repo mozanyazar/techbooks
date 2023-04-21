@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import styles from './Header.module.css'
 import { Link } from 'react-router-dom'
 
@@ -76,7 +76,12 @@ const Header = () => {
               <Link onClick={toggleHandler}>Store</Link>
             </li>
             <li>
-              <Link onClick={toggleHandler}>Blog</Link>
+              <Link
+                to={'/blog'}
+                onClick={toggleHandler}
+              >
+                Blog
+              </Link>
             </li>
             <li>
               <Link onClick={toggleHandler}>Forum</Link>

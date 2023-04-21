@@ -191,7 +191,7 @@
     align-items: center;
     justify-content: center;
     background: #f6f8fc;
-    z-index: 999;
+    z-index: 999999;
     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
   .navbar.active {

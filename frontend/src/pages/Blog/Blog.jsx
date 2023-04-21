@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import styles from './Blog.module.css'
 import Articles from './Articles'
-import { useLocation, useSearchParams } from 'react-router-dom'
+import { HiPlusCircle } from 'react-icons/hi'
+import { Link, useLocation, useSearchParams } from 'react-router-dom'
 // import parser from 'html-react-parser'
 import { useDispatch } from 'react-redux'
 import { allBlogs } from '../../store/blogSlice'
@@ -41,17 +42,23 @@ const Blog = () => {
 
       <section className={styles.blogsWrapper}>
         <div className={styles.blogsInner}>
-          <div className={styles.categories}>
-            <select
-              value={changeQuery || ''}
-              onChange={(e) => handleOptionChange(e)}
-            >
-              <option value="">All Articles</option>
-              <option value="backend">Backend</option>
-              <option value="frontend">Frontend</option>
-              <option value="database">Database</option>
-              <option value="game development">Game Development</option>
-            </select>
+          <div className={styles.categoriesContainer}>
+            <div className={styles.categories}>
+              <select
+                value={changeQuery || ''}
+                onChange={(e) => handleOptionChange(e)}
+              >
+                <option value="">All Articles</option>
+                <option value="backend">Backend</option>
+                <option value="frontend">Frontend</option>
+                <option value="database">Database</option>
+                <option value="game development">Game Development</option>
+              </select>
+            </div>
+            <Link to={'/blog_panel'}>
+              <span>Write Blog</span>
+              <HiPlusCircle size={34} />
+            </Link>
           </div>
 
           <Articles />

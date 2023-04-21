@@ -30,6 +30,10 @@ const App = () => {
 
   // Dynamic imports
   const Blog = React.lazy(() => fakeDelay(1400)(import('./pages/Blog/Blog')))
+  const BlogDetail = React.lazy(() =>
+    fakeDelay(1400)(import('./pages/Blog/BlogDetail/BlogDetail'))
+  )
+
   const Home = React.lazy(() => fakeDelay(1400)(import('./pages/Home/Home')))
   const NotFound = React.lazy(() =>
     fakeDelay(1400)(import('./pages/NotFound/NotFound'))
@@ -60,6 +64,14 @@ const App = () => {
           element={
             <Suspense fallback={<Loading />}>
               <Home />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/blog/:id"
+          element={
+            <Suspense fallback={<Loading />}>
+              <BlogDetail />
             </Suspense>
           }
         />

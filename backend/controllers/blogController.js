@@ -39,8 +39,6 @@ export const createBlog = catchAsync(async (req, res) => {
 
 export const getBlogs = catchAsync(async (req, res) => {
   const category = req.query.category
-  console.log(req.body)
-  console.log(req.query)
   if (category) {
     const blogs = await Blog.find({ category: category })
     res.status(200).json({

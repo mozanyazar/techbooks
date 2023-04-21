@@ -1,0 +1,30 @@
+.skeleton {
+  width: clamp(280px, 31.0606060606vw, 410px);
+  height: 600px;
+  box-shadow: 3px 4px 2px #ededed;
+}
+
+.image {
+  height: 326px;
+  width: 100%;
+}
+
+.titleContainer,
+.descContainer {
+  margin-top: 30px;
+  padding: 0 20px;
+}
+.desc {
+  margin-bottom: 10px;
+}
+
+.title {
+  margin-bottom: 10px;
+  height: 26px;
+}
+
+@media screen and (max-width: 900px) {
+  .skeleton {
+    width: 100%;
+  }
+}
