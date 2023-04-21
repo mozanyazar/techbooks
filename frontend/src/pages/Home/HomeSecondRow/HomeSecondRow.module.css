@@ -160,7 +160,8 @@
     justify-content: space-between;
   }
   .bookContainer img {
-    width: 100%;
+    width: max-content;
+    max-height: clamp(230px, 39vw, 400px);
   }
 }
 @media screen and (max-width: 768px) {
@@ -188,5 +189,17 @@
   .innerContainer {
     padding-top: 60px;
     padding-bottom: 60px;
+  }
+  .booksWrapper {
+    flex-direction: column;
+    gap: 50px;
+    overflow: scroll;
+    width: 90%;
+    margin: 0 auto;
+    max-height: 490px;
+    gap: 20px;
+  }
+  .booksWrapper .bookContainer {
+    min-width: 275px;
   }
 }
