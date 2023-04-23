@@ -7,10 +7,11 @@ import {
   forgotPassword,
   resetPassword,
 } from '../controllers/authController.js'
+import { imageUpload } from '../middleware/imageUpload.js'
 
 const router = express.Router()
 
-router.route('/signup').post(createUser)
+router.route('/signup').post(imageUpload, createUser)
 router.route('/verifyToken').post(compareTokenAndUserId)
 router.route('/logout').post(logOut)
 router.route('/logIn').post(logIn)
