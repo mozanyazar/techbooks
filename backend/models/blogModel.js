@@ -16,7 +16,7 @@ const blogSchema = new mongoose.Schema(
       ref: 'User',
       required: true,
     },
-    image: { type: String },
+    image: { type: String, required: true },
     category: {
       type: String,
       required: true,
