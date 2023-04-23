@@ -5,7 +5,7 @@ import parse from 'html-react-parser'
 import styles from './BlogDetail.module.css'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
-
+import Comments from './Comments'
 const BlogDetail = () => {
   const { id } = useParams()
   const [loading, setLoading] = useState(false)
@@ -57,6 +57,8 @@ const BlogDetail = () => {
             ></div>
           </div>
         )}
+
+        {data && <Comments data={data} />}
       </section>
     </main>
   )
