@@ -39,7 +39,7 @@ blogSchema.virtual('comments', {
   localField: '_id',
 })
 
-blogSchema.pre('find', function (next) {
+blogSchema.pre(/^find/, function (next) {
   this.populate({
     path: 'user',
     select: 'name photo',
