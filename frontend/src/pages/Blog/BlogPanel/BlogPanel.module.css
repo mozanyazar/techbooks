@@ -29,15 +29,15 @@
   margin-top: clamp(10px, 6vw, 60px);
 }
 
-.file,
-.blogDescription h2 {
+.file {
   display: flex;
   flex-direction: column;
   font-family: var(--font-primary);
-  font-size: 22px;
+  font-size: 20px;
   color: var(--dark-blue);
   font-weight: 600;
   text-transform: uppercase;
+  width: max-content;
   position: relative;
 }
 .file input {
@@ -46,49 +46,50 @@
   height: 100%;
   top: 0;
   left: 0;
+  cursor: pointer;
   opacity: 0;
 }
 .file .selectImg {
   width: 300px;
   height: 44px;
   background-color: #ededed;
-  border-radius: 25px;
   box-shadow: 2px 2px 3px #ededed;
   background-color: #fff;
   border: 2px solid #ededed;
   font-family: var(--font-primary);
+  text-transform: uppercase;
   color: var(--dark-blue);
-  font-size: 20px;
+  font-size: 16px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   padding-left: 14px;
+  cursor: pointer;
 }
-
-.blogTitle input::placeholder {
+.file .selectImg svg {
+  font-size: 30px;
+}
+.blogTitle {
   font-family: var(--font-primary);
   color: var(--dark-blue);
-  font-weight: 500;
   text-transform: uppercase;
-  font-size: 16px;
-}
-
-.form label,
-.form select {
-  width: max-content;
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-size: 18px;
 }
 
 .blogTitle input {
-  width: 300px;
-  border: 2px solid #ededed;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #ededed;
   padding: 9px 6px;
   padding-left: 12px;
-  border-radius: 20px;
   outline: none;
   font-family: var(--font-primary);
-  font-size: 16px;
-  box-shadow: 2px 2px 3px #ededed;
 }
+
 .blogDescription {
   display: flex;
   flex-direction: column;
@@ -102,7 +103,6 @@
   width: 300px !important;
   border: 2px solid #ededed;
   padding: 8px 12px;
-  border-radius: 20px;
   outline: none;
   box-shadow: 2px 2px 3px #ededed;
 }
@@ -117,21 +117,22 @@
 }
 
 .button {
-  width: 100%;
-  padding: 12px 0;
+  width: max-content;
+  min-width: 220px;
+  padding: 8px 12px;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: var(--font-primary);
-  font-size: 20px;
+  font-size: clamp(16px, 2vw, 20px);
   background-color: var(--gray);
   border: 2px solid #ededed;
   box-shadow: 2px 2px 3px #ededed;
-  border-radius: 10px;
   color: var(--dark-blue);
+  border-radius: 0;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 300;
   margin-bottom: 40px;
   transition: all 0.3s ease-in-out;
 }

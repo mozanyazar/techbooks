@@ -22,6 +22,7 @@
   max-height: 500px;
   box-shadow: 3px 3px 8px #7b767624;
   object-fit: contain;
+  max-width: 100%;
 }
 .detailContainer .title {
   font-family: var(--font-primary);
@@ -32,11 +33,22 @@
   font-weight: 900;
 }
 
+.desc {
+  max-width: 100%;
+}
+
 .desc p {
   font-family: var(--font-primary);
   font-size: clamp(14px, 1.6vw, 16px);
   margin: 10px 0;
   color: #f8f4f4;
+}
+.desc pre {
+  box-sizing: border-box;
+  background-color: #f2f0f1;
+  padding: 14px;
+  color: black;
+  overflow-x: scroll;
 }
 
 .desc h1,
@@ -105,6 +117,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  align-items: center;
 }
 .userImg {
   width: 60px;
@@ -123,7 +136,7 @@
 .userName {
   font-family: var(--font-primary);
   align-self: center;
-  font-size: 18px;
+  font-size: clamp(15.5px, 1.61vw, 18px);
   color: #ededed;
   text-transform: capitalize;
 }
@@ -194,10 +207,10 @@
   font-family: var(--font-primary);
   font-style: italic;
   font-weight: 400;
-  background-color: #1c3968;
+  background-color: #f2f0f1;
   padding: 18px;
   box-shadow: 2px 2px 5px #3333;
-  color: #ededed;
+  color: #333;
   border: none;
 }
 .commentForm button {
@@ -211,6 +224,10 @@
   font-size: 16px;
 }
 @media screen and (max-width: 768px) {
+  .userName {
+    position: relative;
+    right: 12px;
+  }
   .skeletonImg {
     height: 340px;
   }
@@ -248,5 +265,8 @@
     width: max-content;
     padding: 0 20px;
     font-size: 14.5px;
+  }
+  .commentLeft {
+    align-items: flex-start;
   }
 }

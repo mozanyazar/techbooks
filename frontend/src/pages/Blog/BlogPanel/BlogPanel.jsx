@@ -1,14 +1,12 @@
 import React, { useState } from 'react'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
+import { AiFillFileImage } from 'react-icons/ai'
 import styles from './BlogPanel.module.css'
 
 import { createBlog } from '../../../services/blog'
-import { useSelector } from 'react-redux'
-import { getUser } from '../../../store/userSlice'
 
 const BlogPanel = () => {
-  const user = useSelector(getUser)
   const [description, setDescription] = useState('')
   const [categories, setCategories] = useState('')
   const [image, setImage] = useState()
@@ -41,16 +39,16 @@ const BlogPanel = () => {
       JSON.stringify({
         title,
         description,
-        user: user._id,
         category: categories,
       })
     )
     const response = await createBlog(formData)
-    console.log(response)
 
     if (response.status === 'success') {
       setMessage(response.message)
       clearMessage()
+    } else {
+      console.log(response)
     }
   }
   return (
@@ -58,14 +56,13 @@ const BlogPanel = () => {
       <div className={styles.title}>
         {message ? <h1>{message}</h1> : <h1>Write Blog</h1>}
       </div>
-
       <div className={styles.form}>
         <label
           className={styles.blogTitle}
           htmlFor="title"
         >
+          Blog Title *
           <input
-            placeholder="Blog Title"
             type="text"
             onChange={(e) => setTitle(e.target.value)}
           />
@@ -74,7 +71,7 @@ const BlogPanel = () => {
           onChange={(e) => setCategories(e.target.value.toLowerCase())}
           className={styles.categories}
         >
-          <option>categories</option>
+          <option>categories *</option>
           <option value="Database">Database</option>
           <option value="Backend">Backend</option>
           <option value="frontend">Frontend</option>
@@ -87,7 +84,8 @@ const BlogPanel = () => {
             accept=".png, .jpg, .jpeg, .webp"
           />
           <button className={styles.selectImg}>
-            {image ? 'Image Selected' : 'Select Image'}
+            {image ? 'Image Selected' : 'Select Image *'}
+            <AiFillFileImage />
           </button>
         </label>
         <div className={styles.blogDescription}>
@@ -103,7 +101,7 @@ const BlogPanel = () => {
           className={styles.button}
           onClick={(e) => addBlog(e)}
         >
-          {message ? <p>{message}</p> : <p> Add Blog</p>}
+          Add Blog
         </button>
       </div>
     </main>
