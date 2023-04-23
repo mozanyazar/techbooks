@@ -10,24 +10,21 @@ const ProtectedRoute = ({ children, isUser }) => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (userStatus === 'idle') {
-      dispatch(isUserExist())
-    }
-  }, [dispatch, user])
+    dispatch(isUserExist())
+  }, [dispatch])
 
-  // if we want the user exist
-  if (!isUser) {
-    if (user.length === 0) {
-      return <Navigate to="/login" />
+  if (userStatus === 'succeeded') {
+    if (!isUser) {
+      if (user.length === 0) {
+        return <Navigate to="/login" />
+      }
+      return children
+    } else {
+      if (user.length !== 0) {
+        return <Navigate to="/" />
+      }
+      return children
     }
-    return children
-  }
-  // if we want the user does not exist for example login, signup pages
-  else {
-    if (user.length !== 0) {
-      return <Navigate to="/" />
-    }
-    return children
   }
 }
 
