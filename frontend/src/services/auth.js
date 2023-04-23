@@ -2,10 +2,7 @@ export const createUser = async (data) => {
   try {
     const response = await fetch('/api/v1/users/signup', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
+      body: data,
       credentials: 'include',
     })
 
