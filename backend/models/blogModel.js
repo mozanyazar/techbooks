@@ -24,7 +24,6 @@ const blogSchema = new mongoose.Schema(
     },
     createdAt: {
       type: Date,
-      default: Date.now(),
     },
   },
   {
@@ -32,7 +31,12 @@ const blogSchema = new mongoose.Schema(
     toObject: { virtuals: true },
   }
 )
-
+blogSchema.pre('save', function (next) {
+  if (!this.createdAt) {
+    this.createdAt = new Date()
+  }
+  next()
+})
 blogSchema.virtual('comments', {
   ref: 'Comment',
   foreignField: 'blog',
