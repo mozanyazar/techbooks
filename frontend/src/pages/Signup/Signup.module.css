@@ -36,7 +36,8 @@
   padding: 40px;
   box-sizing: content-box;
   width: 350px;
-  height: 380px;
+  min-height: 500px;
+  height: max-content;
   justify-content: space-around;
   background-color: #ededed;
   padding-bottom: 20px;
@@ -45,7 +46,34 @@
   -webkit-box-shadow: 3px 3px 30px -1px rgba(60, 66, 66, 0.87);
   -moz-box-shadow: 3px 3px 30px -1px rgba(60, 66, 66, 0.87);
 }
-.link {
+.choosePhoto {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: max-content;
+  margin: 0 auto;
+  margin-bottom: 25px;
+  border: 2px solid #5d5a5a;
+  border-radius: 50%;
+}
+.choosePhoto input {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+}
+.choosePhoto img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.choosePhoto .selectIcon {
+  position: absolute;
+  right: 0;
+  bottom: -5px;
+}
+.choosePhoto .link {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -94,7 +122,12 @@
   border-bottom: 1px solid red;
   animation: shake 0.3s;
 }
-
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
 @keyframes shake {
   0% {
     transform: rotate(3deg);
@@ -112,12 +145,18 @@
 @media screen and (max-width: 450px) {
   .form {
     box-sizing: border-box;
-    height: 450px;
   }
   .form label {
     margin-bottom: 20px;
   }
   .form label .error {
-    position: static;
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+  }
+  .link {
+    margin-top: 14px;
   }
 }

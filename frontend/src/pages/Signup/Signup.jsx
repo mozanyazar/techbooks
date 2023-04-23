@@ -1,20 +1,38 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './Signup.module.css'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
 import { Link, useNavigate } from 'react-router-dom'
 import { createUserThunk, getUserError } from '../../store/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
+import { AiOutlineSelect } from 'react-icons/ai'
+import { FaUserCircle } from 'react-icons/fa'
 
 const Signup = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const error = useSelector(getUserError)
+  const [img, setImg] = useState(null)
+  const [imgPreview, setImagePreview] = useState('')
+
   const formSubmit = async (values, actions) => {
     actions.resetForm()
 
+    const formData = new FormData()
+
+    formData.append('image', img)
+    formData.append(
+      'json',
+      JSON.stringify({
+        name: values.name,
+        email: values.email,
+        password: values.password,
+        passwordConfirm: values.passwordConfirm,
+      })
+    )
+
     // create user and get token from backend as a cookie
-    dispatch(createUserThunk(values)).then((e) => {
+    dispatch(createUserThunk(formData)).then((e) => {
       if (e.payload.status === 'error') {
         return
       } else {
@@ -22,7 +40,6 @@ const Signup = () => {
       }
     })
   }
-
   const validationSchema = yup.object().shape({
     name: yup.string().required().min(3),
     email: yup.string().email().required(),
@@ -45,7 +62,17 @@ const Signup = () => {
     onSubmit: formSubmit,
     validationSchema: validationSchema,
   })
-
+  const handleFileInputChange = (event) => {
+    setImg(event.target.files[0])
+    const file = event.target.files[0]
+    const reader = new FileReader()
+    reader.onloadend = () => {
+      setImagePreview(reader.result)
+    }
+    if (file) {
+      reader.readAsDataURL(file)
+    }
+  }
   return (
     <main className={styles.container}>
       <div className={styles.title}>
@@ -58,6 +85,31 @@ const Signup = () => {
         >
           <label>
             {!values.name && error && <p className={styles.error}>{error}</p>}
+          </label>
+          <label
+            htmlFor="image"
+            className={styles.choosePhoto}
+          >
+            <input
+              type="file"
+              onChange={handleFileInputChange}
+              accept=".png, .jpg, .jpeg, .webp"
+            />
+            {imgPreview ? (
+              <img
+                style={{ maxWidth: '100%' }}
+                src={imgPreview}
+                alt="place"
+              />
+            ) : (
+              <>
+                <AiOutlineSelect className={styles.selectIcon} />
+                <FaUserCircle
+                  size={100}
+                  color="rgb(27 56 100)"
+                />
+              </>
+            )}
           </label>
           <label htmlFor="name">
             Name
