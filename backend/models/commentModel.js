@@ -18,7 +18,6 @@ const commentSchema = new mongoose.Schema(
     },
     createdAt: {
       type: Date,
-      default: Date.now(),
     },
   },
   {
@@ -26,6 +25,12 @@ const commentSchema = new mongoose.Schema(
     toObject: { virtuals: true },
   }
 )
+commentSchema.pre('save', function (next) {
+  if (!this.createdAt) {
+    this.createdAt = new Date()
+  }
+  next()
+})
 
 commentSchema.pre(/^find/, function (next) {
   this.populate({
