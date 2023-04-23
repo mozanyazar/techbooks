@@ -12,12 +12,18 @@ const Blog = () => {
   const dispatch = useDispatch()
   const [changeQuery, setChangeQuery] = useState('')
   const [searchParams, setSearchParams] = useSearchParams()
+  const [count, setCount] = useState()
+  const [currentPage, setCurrentPage] = useState(1)
 
   useEffect(() => {
     const params = new URLSearchParams(search)
     const category = params.get('category')
+    const page = params.get('page')
     setChangeQuery(category)
-    dispatch(allBlogs(search))
+    if (page !== null) setCurrentPage(page)
+    dispatch(allBlogs(search)).then((response) =>
+      setCount(response.payload.count)
+    )
   }, [search, dispatch])
 
   async function handleOptionChange(event) {
@@ -27,6 +33,12 @@ const Blog = () => {
     } else {
       setSearchParams({ category: selectedValue })
     }
+  }
+
+  const paginationHandler = (e) => {
+    e.preventDefault()
+    const page = e.target.value * 1 + 1
+    setSearchParams({ page: page })
   }
 
   return (
@@ -62,6 +74,26 @@ const Blog = () => {
           </div>
 
           <Articles />
+          {count / 9 === 1 ? (
+            <></>
+          ) : (
+            <div className={styles.pagination}>
+              {Array(count / 9)
+                .fill(null)
+                .map((el, index) => (
+                  <button
+                    onClick={(e) => paginationHandler(e)}
+                    value={index}
+                    key={index}
+                    className={`${styles.pageBtn} ${
+                      currentPage * 1 === index + 1 && `${styles.active}`
+                    }`}
+                  >
+                    {index + 1}
+                  </button>
+                ))}
+            </div>
+          )}
         </div>
       </section>
     </main>

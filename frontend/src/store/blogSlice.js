@@ -8,7 +8,6 @@ const initialState = {
 }
 // CHECK THE USER STILL EXIST
 export const allBlogs = createAsyncThunk('blogs/allBlogs', async (query) => {
-  console.log(query)
   const response = await getAllBlogs(query)
   return response
 })

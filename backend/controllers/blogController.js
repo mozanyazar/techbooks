@@ -1,4 +1,5 @@
 import Blog from '../models/blogModel.js'
+import APIFeatures from '../utils/ApiFeatures.js'
 import catchAsync from '../utils/catchAsync.js'
 
 export const createBlog = catchAsync(async (req, res) => {
@@ -15,20 +16,21 @@ export const createBlog = catchAsync(async (req, res) => {
 })
 
 export const getBlogs = catchAsync(async (req, res) => {
-  const category = req.query.category
-  if (category) {
-    const blogs = await Blog.find({ category: category })
-    res.status(200).json({
-      status: 'success',
-      data: blogs,
-    })
-  } else {
-    const blogs = await Blog.find()
-    res.status(200).json({
-      status: 'success',
-      data: blogs,
-    })
-  }
+  // get how many document we have this is for pagination
+  const count = await Blog.countDocuments()
+
+  const features = new APIFeatures(Blog.find(), req.query)
+    .filter()
+    .sort()
+    .limitFields()
+    .paginate()
+  const blog = await features.query
+  res.status(200).json({
+    status: 'success',
+    results: blog.length,
+    count,
+    data: blog,
+  })
 })
 
 export const getBlog = catchAsync(async (req, res) => {

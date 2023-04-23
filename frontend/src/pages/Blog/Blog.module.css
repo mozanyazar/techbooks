@@ -125,6 +125,31 @@
   row-gap: 60px;
 }
 
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 60px;
+  gap: 12px;
+}
+.pageBtn {
+  background-color: #2c3e50;
+  padding: 6px;
+  font-family: var(--font-secondary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+}
+.pageBtn.active {
+  background-color: var(--yellow);
+  color: #2c3e50;
+}
+
 @media screen and (max-width: 1300px) {
   .categoriesContainer a {
     margin-right: 15px;
