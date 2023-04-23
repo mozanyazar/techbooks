@@ -21,9 +21,10 @@ const Blog = () => {
     const page = params.get('page')
     setChangeQuery(category)
     if (page !== null) setCurrentPage(page)
-    dispatch(allBlogs(search)).then((response) =>
+    dispatch(allBlogs(search)).then((response) => {
+      if (response.payload.count / 9 === 1) return setCount(null)
       setCount(response.payload.count)
-    )
+    })
   }, [search, dispatch])
 
   async function handleOptionChange(event) {
@@ -74,11 +75,9 @@ const Blog = () => {
           </div>
 
           <Articles />
-          {count / 9 === 1 ? (
-            <></>
-          ) : (
+          {count && (
             <div className={styles.pagination}>
-              {Array(count / 9)
+              {Array(Math.ceil(count / 9))
                 .fill(null)
                 .map((el, index) => (
                   <button
