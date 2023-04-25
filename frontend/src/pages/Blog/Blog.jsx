@@ -19,8 +19,10 @@ const Blog = () => {
     const params = new URLSearchParams(search)
     const category = params.get('category')
     const page = params.get('page')
+
     setChangeQuery(category)
     if (page !== null) setCurrentPage(page)
+
     dispatch(allBlogs(search)).then((response) => {
       if (response.payload.count / 9 === 1) return setCount(null)
       setCount(response.payload.count)
@@ -32,14 +34,17 @@ const Blog = () => {
     if (selectedValue === '') {
       setSearchParams()
     } else {
-      setSearchParams({ category: selectedValue })
+      setSearchParams({ page: 1, category: selectedValue })
     }
   }
 
   const paginationHandler = (e) => {
     e.preventDefault()
+    const params = new URLSearchParams(search)
+    const category = params.get('category')
     const page = e.target.value * 1 + 1
-    setSearchParams({ page: page })
+    if (category !== null) return setSearchParams({ category, page })
+    setSearchParams({ page })
   }
 
   return (
