@@ -6,7 +6,6 @@ const initialState = {
   status: 'idle',
   error: null,
 }
-// CHECK THE USER STILL EXIST
 export const allBlogs = createAsyncThunk('blogs/allBlogs', async (query) => {
   const response = await getAllBlogs(query)
   return response
