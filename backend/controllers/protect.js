@@ -24,5 +24,6 @@ export const protect = catchAsync(async (req, res, next) => {
     )
   }
   req.user = currentUser._id
+  req.user.isAdmin = currentUser.role
   next()
 })
