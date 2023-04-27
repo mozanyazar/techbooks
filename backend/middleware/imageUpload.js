@@ -5,9 +5,10 @@ import path from 'path'
 import { v4 as uuidv4 } from 'uuid'
 
 export const imageUpload = catchAsync(async (req, res, next) => {
+  if (!req.files) return next()
+
   const __filename = fileURLToPath(import.meta.url)
   const __dirname = dirname(__filename)
-
   const imageFile = req.files.image
   const randomName = uuidv4()
 
