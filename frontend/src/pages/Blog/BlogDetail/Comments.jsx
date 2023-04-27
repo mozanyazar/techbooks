@@ -75,7 +75,7 @@ const Comments = ({ data }) => {
         />
         <button type="submit">Submit</button>
       </form>
-      {data.comments.map((el) => {
+      {data.comments?.map((el) => {
         return (
           <div
             className={styles.singleComment}

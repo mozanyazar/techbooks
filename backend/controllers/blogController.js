@@ -34,8 +34,9 @@ export const getBlogs = catchAsync(async (req, res) => {
 })
 
 export const getBlog = catchAsync(async (req, res) => {
-  const blogId = req.params.id
-
-  const blog = await Blog.findOne({ _id: blogId }).populate('comments')
-  res.status(200).json(blog)
+  const blog = await Blog.findOne({ _id: req.params.id }).populate('comments')
+  res.status(200).json({
+    status: 'success',
+    data: blog,
+  })
 })

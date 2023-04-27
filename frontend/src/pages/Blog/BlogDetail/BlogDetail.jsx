@@ -14,7 +14,7 @@ const BlogDetail = () => {
   useEffect(() => {
     const getData = async () => {
       const response = await getBlog(id)
-      setData(response)
+      setData(response.data)
       setTimeout(() => {
         setLoading(true)
       }, 1200)

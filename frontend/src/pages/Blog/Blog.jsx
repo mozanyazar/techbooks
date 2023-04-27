@@ -13,6 +13,7 @@ const Blog = () => {
   const [changeQuery, setChangeQuery] = useState('')
   const [searchParams, setSearchParams] = useSearchParams()
   const [count, setCount] = useState()
+  const [results, setResults] = useState()
   const [currentPage, setCurrentPage] = useState(1)
 
   useEffect(() => {
@@ -25,6 +26,7 @@ const Blog = () => {
 
     dispatch(allBlogs(search)).then((response) => {
       if (response.payload.count / 9 === 1) return setCount(null)
+      setResults(response.payload.results)
       setCount(response.payload.count)
     })
   }, [search, dispatch])
@@ -80,7 +82,7 @@ const Blog = () => {
           </div>
 
           <Articles />
-          {count && (
+          {count && results > 8 && (
             <div className={styles.pagination}>
               {Array(Math.ceil(count / 9))
                 .fill(null)
