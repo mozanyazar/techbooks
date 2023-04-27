@@ -26,6 +26,7 @@
     "nodemailer": "^6.9.1",
     "nodemon": "^2.0.22",
     "path": "^0.12.7",
+    "slugify": "^1.6.6",
     "uuid": "^9.0.0",
     "xss-clean": "^0.1.1"
   },
