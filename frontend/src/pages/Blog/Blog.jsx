@@ -82,7 +82,7 @@ const Blog = () => {
           </div>
 
           <Articles />
-          {count && results > 8 && (
+          {(results > 8 || currentPage > 1) && (
             <div className={styles.pagination}>
               {Array(Math.ceil(count / 9))
                 .fill(null)

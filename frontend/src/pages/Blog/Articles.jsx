@@ -11,36 +11,28 @@ const Articles = () => {
   const blogsStatus = useSelector(getBlogsStatus)
   const [loading, setLoading] = useState(false)
 
-  const clearSkeleton = () => {
-    setTimeout(() => {
-      setLoading(true)
-    }, 1250)
-  }
-
-  useEffect(() => {
-    if (blogsStatus === 'succeeded' && blogs.length > 0) {
-      return clearSkeleton()
-    }
-    setLoading(false)
-  }, [blogsStatus])
-
-  return (
-    <div className={styles.CardsWrapper}>
-      {!loading &&
-        Array(9)
+  if (blogsStatus === 'pending') {
+    return (
+      <div className={styles.CardsWrapper}>
+        {Array(9)
           .fill(null)
           .map((loading, index) => {
             return <ArticleCardSkeleton key={index} />
           })}
-      {loading &&
-        blogs?.map((blog) => {
-          return (
-            <ArticleCard
-              key={blog._id}
-              {...blog}
-            />
-          )
-        })}
+      </div>
+    )
+  }
+
+  return (
+    <div className={styles.CardsWrapper}>
+      {blogs?.map((blog) => {
+        return (
+          <ArticleCard
+            key={blog._id}
+            {...blog}
+          />
+        )
+      })}
     </div>
   )
 }
