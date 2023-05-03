@@ -13,6 +13,8 @@ import errorHandler from './controllers/errorController.js'
 import authRouter from './routes/authRoutes.js'
 import blogRouter from './routes/blogRoutes.js'
 import commentsRouter from './routes/commentRoutes.js'
+import productRouter from './routes/productRoutes.js'
+import reviewRouter from './routes/reviewRoutes.js'
 
 const app = express()
 
@@ -32,7 +34,7 @@ app.use(
   })
 )
 const limiter = rateLimit({
-  max: 100,
+  max: 2000,
   windowMs: 60 * 60 * 1000,
   message: 'Too many requests from this IP, please try again in an hour',
 })
@@ -57,6 +59,8 @@ app.use(
 app.use('/api/v1/users', authRouter)
 app.use('/api/v1/blogs', blogRouter)
 app.use('/api/v1/comments', commentsRouter)
+app.use('/api/v1/products', productRouter)
+app.use('/api/v1/reviews', reviewRouter)
 
 app.use(errorHandler)
 

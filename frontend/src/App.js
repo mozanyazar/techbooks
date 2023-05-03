@@ -1,6 +1,9 @@
 import React, { Suspense, useEffect, useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
+// skeleton
+import 'react-loading-skeleton/dist/skeleton.css'
+
 // Component
 import Header from './components/Header/Header'
 
@@ -30,6 +33,16 @@ const App = () => {
 
   // Dynamic imports
   const Blog = React.lazy(() => fakeDelay(1400)(import('./pages/Blog/Blog')))
+  const Product = React.lazy(() =>
+    fakeDelay(1400)(import('./pages/Products/Product/Product'))
+  )
+  const Products = React.lazy(() =>
+    fakeDelay(1400)(import('./pages/Products/Products'))
+  )
+  const ProductPanel = React.lazy(() =>
+    fakeDelay(1400)(import('./pages/Products/ProductPanel/ProductPanel'))
+  )
+
   const BlogDetail = React.lazy(() =>
     fakeDelay(1400)(import('./pages/Blog/BlogDetail/BlogDetail'))
   )
@@ -76,6 +89,14 @@ const App = () => {
           }
         />
         <Route
+          path="/products/:slug"
+          element={
+            <Suspense fallback={<Loading />}>
+              <Product />
+            </Suspense>
+          }
+        />
+        <Route
           path="/login"
           element={
             <Suspense fallback={<Loading />}>
@@ -118,6 +139,24 @@ const App = () => {
               <ProtectedRoute isUser={false}>
                 <BlogPanel />
               </ProtectedRoute>
+            </Suspense>
+          }
+        />
+        <Route
+          path="/product_panel"
+          element={
+            <Suspense fallback={<Loading />}>
+              <ProtectedRoute isUser={false}>
+                <ProductPanel />
+              </ProtectedRoute>
+            </Suspense>
+          }
+        />
+        <Route
+          path="/products"
+          element={
+            <Suspense fallback={<Loading />}>
+              <Products />
             </Suspense>
           }
         />

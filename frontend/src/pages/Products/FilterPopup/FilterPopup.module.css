@@ -1,0 +1,122 @@
+@import url('../../../index.css');
+
+.popupBg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background: #000000cc;
+  z-index: 999999999999;
+  cursor: pointer;
+}
+
+.popup {
+  width: 500px;
+  padding-bottom: 12px;
+  position: fixed;
+  background-color: var(--gray);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999999999999999999999999;
+  box-shadow: 3px 3px 12px #656c6ecc;
+  scale: 0;
+  transition: all 0.3s ease-in;
+}
+.popup.active {
+  scale: 1;
+}
+.headerPopup {
+  display: flex;
+  padding: 12px 30px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--yellow);
+}
+.popupTitle {
+  font-family: var(--font-primary);
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--dark-blue);
+  text-transform: uppercase;
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 12px 30px;
+  font-family: var(--font-primary);
+  gap: 20px;
+}
+.selectCategory p,
+.selectSort p {
+  font-weight: 900;
+  font-size: 18px;
+  color: var(--dark-blue);
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--dark-blue);
+}
+.innerButtons {
+  display: flex;
+  margin-top: 20px;
+  display: flex;
+
+  flex-wrap: wrap;
+  column-gap: 20px;
+  row-gap: 20px;
+}
+.innerButtons button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  background-color: #ededed;
+  border: 1px solid var(--yellow);
+  min-width: 130px;
+  color: var(--dark-blue);
+  font-weight: 500;
+  font-size: 14px;
+  font-family: var(--font-primary);
+  transition: all 0.3s ease-in-out;
+}
+.innerButtons button:hover {
+  background: var(--yellow);
+}
+.innerButtons button.active {
+  background: var(--yellow);
+}
+.filterButton {
+  width: 90%;
+  margin: 0 auto;
+  background-color: var(--dark-blue);
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-primary);
+  font-size: 18px;
+  gap: 12px;
+  color: white;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--yellow);
+  box-shadow: 3px 3px 12px #000000cc;
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 555px) {
+  .popup {
+    width: 96%;
+    min-width: 340px;
+  }
+  .innerButtons button {
+    width: 100%;
+  }
+  .filterGroup {
+    max-height: 300px;
+    overflow-y: scroll;
+  }
+}

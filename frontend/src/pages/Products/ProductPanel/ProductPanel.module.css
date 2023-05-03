@@ -1,0 +1,156 @@
+@import url('../../../index.css');
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #ededed;
+  height: calc(100vh - 90px);
+}
+.empty {
+  width: 100%;
+  height: 70px;
+  background-color: var(--dark-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-family: var(--font-secondry);
+  font-weight: 900;
+  color: white;
+}
+.form {
+  display: flex;
+  max-width: 1300px;
+  margin: 0 auto;
+  justify-content: space-between;
+  padding-top: 70px;
+  width: 97%;
+}
+.imageWrapper {
+  width: 40%;
+  min-width: 350px;
+  position: relative;
+  height: max-content;
+}
+.selectImage {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+.image {
+  width: 100%;
+  height: max-content;
+}
+.image img {
+  width: 100%;
+}
+.selectIcon {
+  font-size: 34px;
+  position: absolute;
+  right: 0px;
+  bottom: 2px;
+  color: var(--dark-blue);
+}
+
+.rightWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 50%;
+  gap: 30px;
+}
+.rightWrapper label input,
+.rightWrapper label textarea {
+  width: 100%;
+  background-color: transparent;
+  padding: 6px 12px;
+  outline: none;
+  box-shadow: 2px 2px 12px #3333;
+  border: 1px solid #3333;
+  font-family: var(--font-primary);
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--dark-blue);
+}
+.rightWrapper label textarea {
+  min-width: 100%;
+  max-width: 100%;
+  max-height: 300px;
+  min-height: 240px;
+}
+
+.rightWrapper label {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(16px, 2vw, 20px);
+  font-family: var(--font-primary);
+  color: var(--dark-blue);
+  font-weight: 400;
+  text-transform: uppercase;
+  gap: 2px;
+}
+.rightInner {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.rightInner select {
+  width: 100%;
+  background-color: transparent;
+  outline: none;
+  box-shadow: 2px 2px 1px #3333;
+  font-size: 16px;
+  font-family: var(--font-primary);
+  color: var(--dark-blue);
+  border: 1px solid #3333;
+  box-shadow: 2px 2px 12px #3333;
+  max-height: 32px;
+  min-height: 32px;
+  font-weight: 900;
+  padding-left: 5px;
+}
+.addProduct {
+  padding: 8px 24px;
+  background-color: var(--yellow);
+  border: 1px solid #3333;
+  display: flex;
+  align-items: center;
+  font-family: var(--font-primary);
+  font-size: 16px;
+  color: var(--dark-blue);
+  transition: all 0.3s ease;
+  align-self: flex-end;
+}
+.addProduct:hover {
+  background-color: beige;
+}
+
+@media screen and (max-width: 768px) {
+  .form {
+    flex-direction: column;
+  }
+  .imageWrapper {
+    width: 100%;
+  }
+  .rightWrapper {
+    width: 100%;
+  }
+  .container {
+    height: max-content;
+    padding-bottom: 20px;
+  }
+  .addProduct {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+}

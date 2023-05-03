@@ -73,7 +73,12 @@ const Header = () => {
               <Link onClick={toggleHandler}>Home</Link>
             </li>
             <li>
-              <Link onClick={toggleHandler}>Store</Link>
+              <Link
+                to="/products"
+                onClick={toggleHandler}
+              >
+                Store
+              </Link>
             </li>
             <li>
               <Link
