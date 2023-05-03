@@ -37,11 +37,12 @@ const createAndSendToken = (user, statusCode, res) => {
 
 export const createUser = catchAsync(async (req, res) => {
   const imagePath = req.files
+  const body = JSON.parse(req.body.json)
   const newUser = await User.create({
-    name: req.body.name,
-    email: req.body.email,
-    password: req.body.password,
-    passwordConfirm: req.body.passwordConfirm,
+    name: body.name,
+    email: body.email,
+    password: body.password,
+    passwordConfirm: body.passwordConfirm,
     photo: imagePath,
   })
   createAndSendToken(newUser, 201, res)

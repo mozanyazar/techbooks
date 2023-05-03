@@ -22,16 +22,14 @@ const Login = () => {
   // login
   async function handleSubmit(e) {
     e.preventDefault()
-    const res = await dispatch(login({ email, password }))
-
-    // set input emty
-    setPassword('')
-    setEmail('')
-
-    // if success navigate to homepage
-    if (res.payload.status === 'success') {
-      navigate('/')
-    }
+    dispatch(login({ email, password })).then((res) => {
+      if (res.status === 'success') {
+        navigate('/')
+        // set input emty
+        setPassword('')
+        setEmail('')
+      }
+    })
   }
 
   // forgot password
