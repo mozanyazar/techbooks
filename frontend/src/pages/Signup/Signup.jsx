@@ -14,9 +14,10 @@ const Signup = () => {
   const error = useSelector(getUserError)
   const [img, setImg] = useState(null)
   const [imgPreview, setImagePreview] = useState('')
+  const [message, setMessage] = useState('')
 
   const formSubmit = async (values, actions) => {
-    actions.resetForm()
+    if (!img) return setMessage('Photo is required')
 
     const formData = new FormData()
 
@@ -39,6 +40,7 @@ const Signup = () => {
         navigate('/')
       }
     })
+    actions.resetForm()
   }
   const validationSchema = yup.object().shape({
     name: yup.string().required().min(3),
@@ -68,6 +70,7 @@ const Signup = () => {
     const reader = new FileReader()
     reader.onloadend = () => {
       setImagePreview(reader.result)
+      setMessage('')
     }
     if (file) {
       reader.readAsDataURL(file)
@@ -86,6 +89,7 @@ const Signup = () => {
           <label>
             {!values.name && error && <p className={styles.error}>{error}</p>}
           </label>
+          <label>{message && <p className={styles.error}>{message}</p>}</label>
           <label
             htmlFor="image"
             className={styles.choosePhoto}
