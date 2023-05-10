@@ -61,7 +61,7 @@ const Product = () => {
           <div className={styles.product}>
             <div className={styles.left}>
               <img
-                src={`http://localhost:3001/${data.image}`}
+                src={`https://techbook-react-express.onrender.com/${data.image}`}
                 alt={data.title}
               />
             </div>
