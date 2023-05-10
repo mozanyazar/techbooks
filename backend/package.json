@@ -34,5 +34,8 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3"
   },
-  "type": "module"
+  "type": "module",
+  "engines": {
+    "npm": "18.15.0"
+  }
 }
