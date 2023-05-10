@@ -6,6 +6,8 @@ import Loading from '../Loading/Loading'
 
 const ProtectedRoute = ({ children, isUser }) => {
   const user = useSelector(getUser)
+  const userStatus = useSelector(getUserStatus)
+
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -13,7 +15,7 @@ const ProtectedRoute = ({ children, isUser }) => {
   }, [dispatch])
 
   // if we want the user exist
-  if (!isUser) {
+  if (userStatus === 'succeeded' && !isUser) {
     if (user.length === 0) {
       return <Navigate to="/login" />
     }

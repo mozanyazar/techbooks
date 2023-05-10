@@ -220,7 +220,17 @@
     padding: 20px 10px;
   }
   .pagesList .basketButton {
-    display: none;
+    background: var(--dark-blue);
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    margin-left: 46px;
+  }
+  .basketButton p {
+    right: 10px;
+    top: inherit;
+    bottom: 10px;
+    font-size: 16px;
   }
   .orderToday {
     align-self: flex-start;

@@ -6,7 +6,8 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 // Component
 import Header from './components/Header/Header'
-
+import Home from './pages/Home/Home'
+import Products from './pages/Products/Products'
 // Redux
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserStatus, isUserExist } from './store/userSlice'
@@ -15,6 +16,7 @@ import { getUserStatus, isUserExist } from './store/userSlice'
 import ProtectedRoute from './ProtectedRoute/ProtectedRoute'
 // Loading animation
 import Loading from './Loading/Loading'
+import { getUserBasket } from './store/basketSlice'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -33,12 +35,11 @@ const App = () => {
 
   // Dynamic imports
   const Blog = React.lazy(() => fakeDelay(1400)(import('./pages/Blog/Blog')))
+
   const Product = React.lazy(() =>
     fakeDelay(1400)(import('./pages/Products/Product/Product'))
   )
-  const Products = React.lazy(() =>
-    fakeDelay(1400)(import('./pages/Products/Products'))
-  )
+
   const ProductPanel = React.lazy(() =>
     fakeDelay(1400)(import('./pages/Products/ProductPanel/ProductPanel'))
   )
@@ -47,7 +48,6 @@ const App = () => {
     fakeDelay(1400)(import('./pages/Blog/BlogDetail/BlogDetail'))
   )
 
-  const Home = React.lazy(() => fakeDelay(1400)(import('./pages/Home/Home')))
   const NotFound = React.lazy(() =>
     fakeDelay(1400)(import('./pages/NotFound/NotFound'))
   )
@@ -62,9 +62,15 @@ const App = () => {
     fakeDelay(1400)(import('./pages/ResetPassword/ResetPassword'))
   )
 
+  // onAuthStateChanged
+
   useEffect(() => {
     if (userStatus === 'idle') {
-      dispatch(isUserExist())
+      dispatch(isUserExist()).then((res) => {
+        if (res.payload.status === 'success') {
+          return dispatch(getUserBasket())
+        }
+      })
     }
   }, [dispatch])
 
@@ -74,11 +80,7 @@ const App = () => {
       <Routes>
         <Route
           path="/"
-          element={
-            <Suspense fallback={<Loading />}>
-              <Home />
-            </Suspense>
-          }
+          element={<Home />}
         />
         <Route
           path="/blog/:id"
@@ -154,11 +156,7 @@ const App = () => {
         />
         <Route
           path="/products"
-          element={
-            <Suspense fallback={<Loading />}>
-              <Products />
-            </Suspense>
-          }
+          element={<Products />}
         />
         <Route
           path="*"

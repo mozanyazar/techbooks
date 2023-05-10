@@ -8,22 +8,35 @@ import img1 from '../../../images/22.svg'
 import img2 from '../../../images/Icon.svg'
 import img3 from '../../../images/22.png'
 import Reviews from './Reviews'
+import BasketLoading from '../../../Loading/BasketLoading'
+import { updateUserBasket } from '../../../store/basketSlice'
+import { useDispatch } from 'react-redux'
 
 const Product = () => {
+  const dispatch = useDispatch()
   const { pathname } = useLocation()
   const [data, setData] = useState()
   const [review, setReview] = useState()
   const [loading, setLoading] = useState(true)
+  const [click, setClick] = useState(false)
 
   const getBook = async () => {
     const response = await getProduct(pathname)
     if (response.status === 'success') {
       setData(response.data[0])
       setReview(response.data[0].review)
-      setTimeout(() => {
-        setLoading(false)
-      }, 900)
+      setLoading(false)
     }
+  }
+
+  const addToCard = async (e) => {
+    e.preventDefault()
+    const addCard = await dispatch(updateUserBasket(data))
+    console.log(addCard)
+    setClick(true)
+    setTimeout(() => {
+      setClick(false)
+    }, 1000)
   }
 
   useEffect(() => {
@@ -34,8 +47,17 @@ const Product = () => {
     <main>
       <div className={styles.title}>{data && <h1>{data.title}</h1>}</div>
 
-      {data && (
-        <section className={styles.innerContainer}>
+      <section className={styles.innerContainer}>
+        {loading ? (
+          <div className={styles.skeleton}>
+            <div className={styles.skeletonImg}>
+              <Skeleton />
+            </div>
+            <div className={styles.skeletonRight}>
+              <Skeleton count={3} />
+            </div>
+          </div>
+        ) : (
           <div className={styles.product}>
             <div className={styles.left}>
               <img
@@ -81,17 +103,29 @@ const Product = () => {
                   20 x 14 x 4 cm
                 </li>
               </ul>
-              <button className={styles.addCart}>
-                <AiOutlineShoppingCart
-                  size={22}
-                  style={{ position: 'relative', right: '4px' }}
-                />{' '}
-                Add to Cart
-              </button>
+              {click ? (
+                <button
+                  className={styles.addCart}
+                  disabled
+                >
+                  <BasketLoading />
+                </button>
+              ) : (
+                <button
+                  onClick={(e) => addToCard(e)}
+                  className={styles.addCart}
+                >
+                  <AiOutlineShoppingCart
+                    size={22}
+                    style={{ position: 'relative', right: '4px' }}
+                  />{' '}
+                  Add to Cart
+                </button>
+              )}
             </div>
           </div>
-        </section>
-      )}
+        )}
+      </section>
 
       {review && (
         <Reviews

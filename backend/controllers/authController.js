@@ -5,6 +5,7 @@ import util from 'util'
 import jwt from 'jsonwebtoken'
 import AppError from '../utils/AppError.js'
 import nodemailer from 'nodemailer'
+import Basket from '../models/basketModel.js'
 
 const signToken = (id) =>
   jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -45,6 +46,8 @@ export const createUser = catchAsync(async (req, res) => {
     passwordConfirm: body.passwordConfirm,
     photo: imagePath,
   })
+
+  await Basket.create({ userId: newUser._id })
   createAndSendToken(newUser, 201, res)
 })
 

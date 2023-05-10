@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './ProductCard.module.css'
 import { Link } from 'react-router-dom'
+import { updateUserBasket } from '../../store/basketSlice'
+import { useDispatch } from 'react-redux'
+import BasketLoading from '../../Loading/BasketLoading'
 
 const ProductCard = ({
   title,
@@ -12,7 +15,27 @@ const ProductCard = ({
   ratingsAverage,
   ratingsQuantity,
   slug,
+  _id,
 }) => {
+  const dispatch = useDispatch()
+  const [click, setClick] = useState(false)
+
+  const addToCart = (e) => {
+    e.preventDefault()
+    setClick(true)
+    const items = {
+      title,
+      description,
+      price,
+      pages,
+      image,
+      category,
+      ratingsAverage,
+      ratingsQuantity,
+      slug,
+    }
+    dispatch(updateUserBasket(items)).then((res) => setClick(false))
+  }
   return (
     <Link
       to={`${slug}`}
@@ -32,7 +55,18 @@ const ProductCard = ({
         </div>
         <div className={styles.cardBottom}>
           <p> pages: {pages}</p>
-          <button className={styles.addCard}>Add to Card</button>
+          {click ? (
+            <button className={styles.addCard}>
+              <BasketLoading />
+            </button>
+          ) : (
+            <button
+              onClick={addToCart}
+              className={styles.addCard}
+            >
+              Add to Card
+            </button>
+          )}
         </div>
       </div>
     </Link>

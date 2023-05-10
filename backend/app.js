@@ -15,6 +15,7 @@ import blogRouter from './routes/blogRoutes.js'
 import commentsRouter from './routes/commentRoutes.js'
 import productRouter from './routes/productRoutes.js'
 import reviewRouter from './routes/reviewRoutes.js'
+import basketRouter from './routes/basketRoutes.js'
 
 const app = express()
 
@@ -61,6 +62,7 @@ app.use('/api/v1/blogs', blogRouter)
 app.use('/api/v1/comments', commentsRouter)
 app.use('/api/v1/products', productRouter)
 app.use('/api/v1/reviews', reviewRouter)
+app.use('/api/v1/basket', basketRouter)
 
 app.use(errorHandler)
 

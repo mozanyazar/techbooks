@@ -6,13 +6,18 @@ import vector from '../../images/Vector.png'
 import facebook from '../../images/Facebook.png'
 import twitter from '../../images/Twitter.png'
 import linkedin from '../../images/LinkedIn.png'
-import basket from '../../images/basket.png'
+import basketImg from '../../images/basket.png'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { getUser, logout } from '../../store/userSlice'
-
+import { basket, getBasketStatus } from '../../store/basketSlice'
+import Basket from '../Basket/Basket'
 const Header = () => {
   const user = useSelector(getUser)
+
+  const userBasket = useSelector(basket)
+  const [basketOpenAndClose, setBasketOpenAndClose] = useState(false)
+  const basketStatus = useSelector(getBasketStatus)
 
   const dispatch = useDispatch()
   const [toggle, setToggle] = useState(false)
@@ -27,9 +32,20 @@ const Header = () => {
       html.classList.remove('active')
     }
   }
+  // basket toggle
+  const basketToggle = (event) => {
+    event.preventDefault()
+    setBasketOpenAndClose(!basketOpenAndClose)
+  }
 
   return (
     <header className={styles.container}>
+      {basketOpenAndClose && basketStatus === 'succeeded' && (
+        <Basket
+          basketToggle={basketToggle}
+          basketOpenAndClose={basketOpenAndClose}
+        />
+      )}
       <div className={styles.innerContainer}>
         <div className={styles.leftWrapper}>
           <Link
@@ -94,13 +110,20 @@ const Header = () => {
             <li>
               <Link onClick={toggleHandler}>Contact</Link>
             </li>
-            <button className={styles.basketButton}>
+            <button
+              onClick={(e) => basketToggle(e)}
+              className={styles.basketButton}
+            >
               <img
                 width={22}
-                src={basket}
+                src={basketImg}
                 alt="basket"
               />
-              <p>0</p>
+              <p>
+                {basketStatus === 'succeeded' && userBasket
+                  ? userBasket.items.length
+                  : 0}
+              </p>
             </button>
           </ul>
           {user.length !== 0 ? (
