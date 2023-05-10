@@ -21,5 +21,4 @@ export const createComment = catchAsync(async (req, res, next) => {
 
 export const getComment = catchAsync(async (req, res) => {
   const getCommentById = await Comment.findById(req.params.id).populate('user')
-  console.log(getCommentById)
 })

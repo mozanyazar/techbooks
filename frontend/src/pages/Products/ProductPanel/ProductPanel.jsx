@@ -39,7 +39,6 @@ const ProductPanel = () => {
     )
 
     const response = await createProduct(formData)
-    console.log(response)
     if (response.status === 'success') {
       setMessage('product created')
       setImage(null)
@@ -51,7 +50,6 @@ const ProductPanel = () => {
       setCategory('')
       clearMessage(2000)
     } else if (response.status === 'fail') {
-      console.log('teest')
       setMessage(response.message)
       clearMessage(4000)
     }

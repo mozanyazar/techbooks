@@ -39,7 +39,6 @@ const userSlice = createSlice({
       })
       .addCase(getUserBasket.fulfilled, (state, action) => {
         state.status = 'succeeded'
-        console.log(action.payload)
         state.basket = action.payload.data
       })
       .addCase(getUserBasket.rejected, (state, action) => {})
@@ -53,7 +52,6 @@ const userSlice = createSlice({
       })
       .addCase(updateUserBasket.rejected, (state, action) => {})
       .addCase(removeItemFromBasket.fulfilled, (state, action) => {
-        console.log(action.payload)
         state.status = 'succeeded'
         state.basket = action.payload.data
       })

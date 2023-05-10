@@ -26,7 +26,6 @@ export const getAllProducts = async (query) => {
   }
 }
 export const getProduct = async (query) => {
-  console.log(query)
   try {
     const response = await fetch(`/api/v1/${query}`, {
       method: 'GET',

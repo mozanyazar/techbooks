@@ -18,9 +18,8 @@ const Home = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    console.log('rendered')
     if (latestBlogStatus === 'idle') {
-      dispatch(latest3Blog()).then((res) => console.log(res))
+      dispatch(latest3Blog())
     }
   }, [])
 

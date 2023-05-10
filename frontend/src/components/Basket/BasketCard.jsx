@@ -10,7 +10,7 @@ const BasketCard = ({ title, price, quantity, image, slug, basketToggle }) => {
 
   const removeItem = async (event) => {
     event.preventDefault()
-    dispatch(removeItemFromBasket({ title })).then((res) => console.log(res))
+    dispatch(removeItemFromBasket({ title }))
   }
 
   return (

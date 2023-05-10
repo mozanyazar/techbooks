@@ -141,7 +141,6 @@ export const forgotPassword = async (req, res, next) => {
     if (error) {
       console.log(error)
     } else {
-      console.log('E-mail sent: ' + info.response)
       res.status(200).json({
         status: 'success',
         message: 'Check your email, Password reset link sent',
