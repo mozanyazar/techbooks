@@ -17,7 +17,7 @@ const BasketCard = ({ title, price, quantity, image, slug, basketToggle }) => {
     <div className={styles.product}>
       <div className={styles.productImg}>
         <img
-          src={`http://localhost:3001/${image}`}
+          src={`https://techbook-react-express.onrender.com/${image}`}
           alt={title}
         />
         <div className={styles.titleGroup}>

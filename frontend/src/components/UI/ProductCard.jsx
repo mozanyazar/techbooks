@@ -43,7 +43,7 @@ const ProductCard = ({
     >
       <div className={styles.image}>
         <img
-          src={`http://localhost:3001/${image}`}
+          src={`https://techbook-react-express.onrender.com//${image}`}
           alt={title}
         />
       </div>

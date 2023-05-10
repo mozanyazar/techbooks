@@ -11,7 +11,7 @@ const ArticleCard = ({ createdAt, description, image, title, user, _id }) => {
     >
       <img
         className={styles.cardImage}
-        src={`http://localhost:3001/${image}`}
+        src={`https://techbook-react-express.onrender.com/${image}`}
         alt=""
       />
 
