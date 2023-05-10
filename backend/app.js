@@ -63,7 +63,9 @@ app.use('/api/v1/comments', commentsRouter)
 app.use('/api/v1/products', productRouter)
 app.use('/api/v1/reviews', reviewRouter)
 app.use('/api/v1/basket', basketRouter)
-
+app.get('/', (req, res) => {
+  res.send('hello !')
+})
 app.use(errorHandler)
 
 export default app
