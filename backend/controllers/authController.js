@@ -83,6 +83,10 @@ export const compareTokenAndUserId = catchAsync(async (req, res, next) => {
 export const logOut = (req, res) => {
   // res.cookie('jwt', '', { maxAge: 1 })
   res.clearCookie('jwt')
+  res.clearCookie('jwt', {
+    domain: '.techbooks-production.up.railway.app',
+  })
+
   res.status(200).json({ message: 'success' })
 }
 
