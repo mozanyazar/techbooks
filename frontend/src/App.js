@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from 'react'
+import React, { Suspense, useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 // skeleton
@@ -34,32 +34,32 @@ const App = () => {
   }
 
   // Dynamic imports
-  const Blog = React.lazy(() => fakeDelay(1400)(import('./pages/Blog/Blog')))
+  const Blog = React.lazy(() => fakeDelay(500)(import('./pages/Blog/Blog')))
 
   const Product = React.lazy(() =>
-    fakeDelay(1400)(import('./pages/Products/Product/Product'))
+    fakeDelay(500)(import('./pages/Products/Product/Product'))
   )
 
   const ProductPanel = React.lazy(() =>
-    fakeDelay(1400)(import('./pages/Products/ProductPanel/ProductPanel'))
+    fakeDelay(500)(import('./pages/Products/ProductPanel/ProductPanel'))
   )
 
   const BlogDetail = React.lazy(() =>
-    fakeDelay(1400)(import('./pages/Blog/BlogDetail/BlogDetail'))
+    fakeDelay(500)(import('./pages/Blog/BlogDetail/BlogDetail'))
   )
 
   const NotFound = React.lazy(() =>
-    fakeDelay(1400)(import('./pages/NotFound/NotFound'))
+    fakeDelay(500)(import('./pages/NotFound/NotFound'))
   )
   const BlogPanel = React.lazy(() =>
-    fakeDelay(1400)(import('./pages/Blog/BlogPanel/BlogPanel'))
+    fakeDelay(500)(import('./pages/Blog/BlogPanel/BlogPanel'))
   )
-  const Login = React.lazy(() => fakeDelay(1400)(import('./pages/Login/Login')))
+  const Login = React.lazy(() => fakeDelay(500)(import('./pages/Login/Login')))
   const Signup = React.lazy(() =>
-    fakeDelay(1400)(import('./pages/Signup/Signup'))
+    fakeDelay(500)(import('./pages/Signup/Signup'))
   )
   const ResetPassword = React.lazy(() =>
-    fakeDelay(1400)(import('./pages/ResetPassword/ResetPassword'))
+    fakeDelay(500)(import('./pages/ResetPassword/ResetPassword'))
   )
 
   // onAuthStateChanged
