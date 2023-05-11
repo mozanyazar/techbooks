@@ -86,7 +86,12 @@ const Header = () => {
         >
           <ul className={styles.pagesList}>
             <li>
-              <Link onClick={toggleHandler}>Home</Link>
+              <Link
+                to={'/'}
+                onClick={toggleHandler}
+              >
+                Home
+              </Link>
             </li>
             <li>
               <Link
@@ -128,7 +133,9 @@ const Header = () => {
           </ul>
           {user.length !== 0 ? (
             <button
-              onClick={() => dispatch(logout())}
+              onClick={() => {
+                dispatch(logout()).then(() => window.location.reload())
+              }}
               className={`${styles.orderToday} ${styles.logout}`}
             >
               Logout
