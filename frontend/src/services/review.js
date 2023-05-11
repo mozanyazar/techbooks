@@ -1,7 +1,7 @@
 export const createReview = async (data) => {
   try {
     const response = await fetch(
-      'https://techbook-react-express.onrender.com/api/v1/reviews',
+      'https://techbooks-production.up.railway.app/api/v1/reviews',
       {
         method: 'POST',
         headers: {

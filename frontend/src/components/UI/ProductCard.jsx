@@ -45,7 +45,7 @@ const ProductCard = ({
     >
       <div className={styles.image}>
         <img
-          src={`https://techbook-react-express.onrender.com/${image}`}
+          src={`https://techbooks-production.up.railway.app/${image}`}
           alt={title}
         />
       </div>

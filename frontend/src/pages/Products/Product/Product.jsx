@@ -63,7 +63,7 @@ const Product = () => {
           <div className={styles.product}>
             <div className={styles.left}>
               <img
-                src={`https://techbook-react-express.onrender.com/${data.image}`}
+                src={`https://techbooks-production.up.railway.app/${data.image}`}
                 alt={data.title}
               />
             </div>

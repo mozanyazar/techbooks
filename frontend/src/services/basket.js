@@ -1,7 +1,7 @@
 export const updateBasket = async (data) => {
   try {
     const response = await fetch(
-      'https://techbook-react-express.onrender.com/api/v1/basket',
+      'https://techbooks-production.up.railway.app/api/v1/basket',
       {
         method: 'PATCH',
         headers: {
@@ -19,7 +19,7 @@ export const updateBasket = async (data) => {
 export const getBasket = async () => {
   try {
     const response = await fetch(
-      'https://techbook-react-express.onrender.com/api/v1/basket',
+      'https://techbooks-production.up.railway.app/api/v1/basket',
       {
         method: 'GET',
         headers: {
@@ -37,7 +37,7 @@ export const getBasket = async () => {
 export const deleteItem = async (data) => {
   try {
     const response = await fetch(
-      'https://techbook-react-express.onrender.com/api/v1/basket',
+      'https://techbooks-production.up.railway.app/api/v1/basket',
       {
         method: 'DELETE',
         headers: {

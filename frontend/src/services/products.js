@@ -16,7 +16,7 @@ export const createProduct = async (formData) => {
 export const getAllProducts = async (query) => {
   try {
     const response = await fetch(
-      `https://techbook-react-express.onrender.com/api/v1/products${
+      `https://techbooks-production.up.railway.app/api/v1/products${
         query ? query : ''
       }`,
       {
@@ -36,7 +36,7 @@ export const getAllProducts = async (query) => {
 export const getProduct = async (query) => {
   try {
     const response = await fetch(
-      `https://techbook-react-express.onrender.com/api/v1${query}`,
+      `https://techbooks-production.up.railway.app/api/v1${query}`,
       {
         method: 'GET',
         headers: {

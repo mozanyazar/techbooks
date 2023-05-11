@@ -59,7 +59,7 @@ const Reviews = ({ review, data, getBook }) => {
           >
             <div className={styles.leftPp}>
               <img
-                src={`https://techbook-react-express.onrender.com/${review.user.photo}`}
+                src={`https://techbooks-production.up.railway.app/${review.user.photo}`}
                 alt={review.user.name}
               />
               <span>{review.user.name}</span>

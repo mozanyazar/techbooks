@@ -11,7 +11,7 @@ const ArticleCard = ({ createdAt, description, image, title, user, _id }) => {
     >
       <img
         className={styles.cardImage}
-        src={`https://techbook-react-express.onrender.com/${image}`}
+        src={`https://techbooks-production.up.railway.app/${image}`}
         alt=""
       />
 

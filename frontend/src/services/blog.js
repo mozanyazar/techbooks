@@ -1,7 +1,7 @@
 export const createBlog = async (formData) => {
   try {
     const response = await fetch(
-      'https://techbook-react-express.onrender.com/api/v1/blogs',
+      'https://techbooks-production.up.railway.app/api/v1/blogs',
       {
         method: 'POST',
         body: formData,
@@ -15,7 +15,7 @@ export const createBlog = async (formData) => {
 export const getBlog = async (id) => {
   try {
     const response = await fetch(
-      `https://techbook-react-express.onrender.com/api/v1/blogs/${id}`,
+      `https://techbooks-production.up.railway.app/api/v1/blogs/${id}`,
       {
         method: 'GET',
         headers: {
@@ -34,7 +34,7 @@ export const getBlog = async (id) => {
 export const getAllBlogs = async (query) => {
   try {
     const response = await fetch(
-      `https://techbook-react-express.onrender.com/api/v1/blogs${
+      `https://techbooks-production.up.railway.app/api/v1/blogs${
         query ? query : ''
       }`,
       {

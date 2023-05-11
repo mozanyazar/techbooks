@@ -1,7 +1,7 @@
 export const createUser = async (data) => {
   try {
     const response = await fetch(
-      'https://techbook-react-express.onrender.com/api/v1/users/signup',
+      'https://techbooks-production.up.railway.app/api/v1/users/signup',
       {
         method: 'POST',
         body: data,
@@ -19,7 +19,7 @@ export const createUser = async (data) => {
 export const verifiedToken = async (data) => {
   try {
     const response = await fetch(
-      'https://techbook-react-express.onrender.com/api/v1/users/verifyToken',
+      'https://techbooks-production.up.railway.app/api/v1/users/verifyToken',
       {
         method: 'POST',
         headers: {
@@ -39,7 +39,7 @@ export const verifiedToken = async (data) => {
 export const userLogout = async () => {
   try {
     const response = await fetch(
-      'https://techbook-react-express.onrender.com/api/v1/users/logOut',
+      'https://techbooks-production.up.railway.app/api/v1/users/logOut',
       {
         method: 'POST',
         headers: {
@@ -59,7 +59,7 @@ export const userLogout = async () => {
 export const userLogin = async (data) => {
   try {
     const response = await fetch(
-      'https://techbook-react-express.onrender.com/api/v1/users/logIn',
+      'https://techbooks-production.up.railway.app/api/v1/users/logIn',
       {
         method: 'POST',
         headers: {
@@ -79,7 +79,7 @@ export const userLogin = async (data) => {
 export const forgotPassword = async (data) => {
   try {
     const response = await fetch(
-      'https://techbook-react-express.onrender.com/api/v1/users/forgot-password',
+      'https://techbooks-production.up.railway.app/api/v1/users/forgot-password',
       {
         method: 'POST',
         headers: {
@@ -97,7 +97,7 @@ export const forgotPassword = async (data) => {
 export const resetPassword = async (data) => {
   try {
     const response = await fetch(
-      'https://techbook-react-express.onrender.com/api/v1/users/reset-password',
+      'https://techbooks-production.up.railway.app/api/v1/users/reset-password',
       {
         method: 'POST',
         headers: {
