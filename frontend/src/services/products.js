@@ -36,7 +36,7 @@ export const getAllProducts = async (query) => {
 export const getProduct = async (query) => {
   try {
     const response = await fetch(
-      `https://techbook-react-express.onrender.com/api/v1/${query}`,
+      `https://techbook-react-express.onrender.com/api/v1${query}`,
       {
         method: 'GET',
         headers: {
