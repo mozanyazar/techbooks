@@ -32,6 +32,7 @@ app.use(
   cors({
     origin: ['https://techbooks.vercel.app', 'http://localhost:3000'],
     credentials: true,
+    maxAge: 30 * 24 * 60 * 60,
   })
 )
 const limiter = rateLimit({

@@ -110,9 +110,6 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <Link onClick={toggleHandler}>Forum</Link>
-            </li>
-            <li>
               <Link onClick={toggleHandler}>Contact</Link>
             </li>
             <button

@@ -19,7 +19,7 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  z-index: 999999999999999999999999;
+  z-index: 99999999999999;
   box-shadow: 3px 3px 12px #656c6ecc;
   scale: 0;
   transition: all 0.3s ease-in;
