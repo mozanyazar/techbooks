@@ -30,7 +30,7 @@ app.use(cookieParser())
 app.use(helmet())
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://techbooks.vercel.app',
     credentials: true,
   })
 )
