@@ -24,6 +24,9 @@ export const createUserThunk = createAsyncThunk(
   'user/createUserThunk',
   async (data) => {
     const response = await createUser(data)
+    if (response.status === 'fail') {
+      throw new Error('email already in use')
+    }
     return response
   }
 )
