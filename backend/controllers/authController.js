@@ -68,13 +68,7 @@ export const compareTokenAndUserId = catchAsync(async (req, res, next) => {
 
   if (!currentUser) {
     // clear the cookie
-    res.clearCookie('jwt', {
-      httpOnly: true,
-      secure: true,
-      sameSite: 'none',
-      path: '/',
-      domain: '.vercel.app',
-    })
+    res.clearCookie('jwt')
     return next(
       new AppError('the user belonging to this token does no longer exist', 401)
     )
@@ -84,6 +78,13 @@ export const compareTokenAndUserId = catchAsync(async (req, res, next) => {
     currentUser,
   })
 })
+
+// clear jwt from cookie
+export const logOut = (req, res) => {
+  // res.cookie('jwt', '', { maxAge: 1 })
+  res.clearCookie('jwt')
+  res.status(200).json({ message: 'success' })
+}
 
 export const logIn = catchAsync(async (req, res, next) => {
   const { email, password } = req.body
@@ -100,19 +101,6 @@ export const logIn = catchAsync(async (req, res, next) => {
 
   createAndSendToken(user, 200, res)
 })
-
-export const logOut = (req, res) => {
-  // clear jwt from cookie
-  res.clearCookie('jwt', {
-    httpOnly: true,
-    secure: true,
-    sameSite: 'none',
-    path: '/',
-    domain: '.vercel.app',
-  })
-
-  res.status(200).json({ message: 'success' })
-}
 
 // send link when user forgot the password
 export const forgotPassword = async (req, res, next) => {
