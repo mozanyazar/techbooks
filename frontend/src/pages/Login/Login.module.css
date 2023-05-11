@@ -31,6 +31,7 @@
   width: 100%;
 }
 .form {
+  position: relative;
   display: flex;
   flex-direction: column;
   padding: 40px;
@@ -107,6 +108,11 @@
   font-family: var(--font-primary);
   font-size: 14px;
   margin-bottom: 10px;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
 }
 
 @keyframes shake {

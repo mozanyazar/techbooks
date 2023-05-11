@@ -101,6 +101,15 @@
   color: rgba(255, 0, 0, 0.728);
   font-size: 13px;
 }
+.errorMess {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  width: max-content;
+  transform: translateX(-50%);
+  color: rgba(255, 0, 0, 0.728);
+  font-size: 13px;
+}
 .form input {
   padding: 8px 12px;
   border: none;
