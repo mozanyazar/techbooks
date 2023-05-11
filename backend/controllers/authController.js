@@ -68,7 +68,21 @@ export const compareTokenAndUserId = catchAsync(async (req, res, next) => {
 
   if (!currentUser) {
     // clear the cookie
-    res.clearCookie('jwt')
+    res.clearCookie('jwt', {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'none',
+      path: '/',
+      domain: 'techbooks-production.up.railway.app',
+    })
+    res.clearCookie('jwt', {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'none',
+      path: '/',
+      domain: 'techbooks.vercel.app',
+    })
+
     return next(
       new AppError('the user belonging to this token does no longer exist', 401)
     )
@@ -82,9 +96,19 @@ export const compareTokenAndUserId = catchAsync(async (req, res, next) => {
 // clear jwt from cookie
 export const logOut = (req, res) => {
   // res.cookie('jwt', '', { maxAge: 1 })
-  res.clearCookie('jwt')
   res.clearCookie('jwt', {
-    domain: '.techbooks-production.up.railway.app',
+    httpOnly: true,
+    secure: true,
+    sameSite: 'none',
+    path: '/',
+    domain: 'techbooks-production.up.railway.app',
+  })
+  res.clearCookie('jwt', {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'none',
+    path: '/',
+    domain: 'techbooks.vercel.app',
   })
 
   res.status(200).json({ message: 'success' })
