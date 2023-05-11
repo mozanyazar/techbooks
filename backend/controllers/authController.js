@@ -68,7 +68,7 @@ export const compareTokenAndUserId = catchAsync(async (req, res, next) => {
 
   if (!currentUser) {
     // clear the cookie
-    res.clearCookie()
+    res.clearCookie('jwt')
     return next(
       new AppError('the user belonging to this token does no longer exist', 401)
     )
@@ -82,8 +82,7 @@ export const compareTokenAndUserId = catchAsync(async (req, res, next) => {
 // clear jwt from cookie
 export const logOut = (req, res) => {
   // res.cookie('jwt', '', { maxAge: 1 })
-  res.clearCookie()
-
+  res.clearCookie('jwt')
   res.status(200).json({ message: 'success' })
 }
 
