@@ -110,23 +110,28 @@ const Header = () => {
               </Link>
             </li>
             <li>
+              <Link to={'/'}>Forum</Link>
+            </li>
+            <li>
               <Link onClick={toggleHandler}>Contact</Link>
             </li>
-            <button
-              onClick={(e) => basketToggle(e)}
-              className={styles.basketButton}
-            >
-              <img
-                width={22}
-                src={basketImg}
-                alt="basket"
-              />
-              <p>
-                {basketStatus === 'succeeded' && userBasket
-                  ? userBasket.items.length
-                  : 0}
-              </p>
-            </button>
+            {user.length !== 0 && (
+              <button
+                onClick={(e) => basketToggle(e)}
+                className={styles.basketButton}
+              >
+                <img
+                  width={22}
+                  src={basketImg}
+                  alt="basket"
+                />
+                <p>
+                  {basketStatus === 'succeeded' && userBasket
+                    ? userBasket.items.length
+                    : 0}
+                </p>
+              </button>
+            )}
           </ul>
           {user.length !== 0 ? (
             <button

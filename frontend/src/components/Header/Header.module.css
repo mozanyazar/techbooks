@@ -91,7 +91,9 @@
   align-items: center;
   justify-content: center;
 }
-
+.dn {
+  display: none;
+}
 .orderTodayWrapper div {
   box-shadow: 3px 3px 17px -1px rgba(60, 66, 66, 0.87);
 
