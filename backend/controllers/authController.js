@@ -85,19 +85,6 @@ export const compareTokenAndUserId = catchAsync(async (req, res, next) => {
   })
 })
 
-export const logOut = (req, res) => {
-  // clear jwt from cookie
-  res.clearCookie('jwt', {
-    httpOnly: true,
-    secure: true,
-    sameSite: 'none',
-    path: '/',
-    domain: 'techbooks.vercel.app',
-  })
-
-  res.status(200).json({ message: 'success' })
-}
-
 export const logIn = catchAsync(async (req, res, next) => {
   const { email, password } = req.body
 
@@ -113,6 +100,19 @@ export const logIn = catchAsync(async (req, res, next) => {
 
   createAndSendToken(user, 200, res)
 })
+
+export const logOut = (req, res) => {
+  // clear jwt from cookie
+  res.clearCookie('jwt', {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'none',
+    path: '/',
+    domain: 'techbooks.vercel.app',
+  })
+
+  res.status(200).json({ message: 'success' })
+}
 
 // send link when user forgot the password
 export const forgotPassword = async (req, res, next) => {
