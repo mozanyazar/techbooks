@@ -68,7 +68,11 @@ export const compareTokenAndUserId = catchAsync(async (req, res, next) => {
 
   if (!currentUser) {
     // clear the cookie
-    res.clearCookie('jwt')
+    res.cookie('jwt', 'deleted', {
+      expires: new Date(Date.now() + 1000),
+      httpOnly: true,
+    })
+
     return next(
       new AppError('the user belonging to this token does no longer exist', 401)
     )
@@ -81,11 +85,11 @@ export const compareTokenAndUserId = catchAsync(async (req, res, next) => {
 
 // clear jwt from cookie
 export const logOut = (req, res) => {
-  // res.cookie('jwt', '', { maxAge: 1 })
-  res.clearCookie('jwt', {
-    domain: 'https://techbooks.vercel.app', // yerel etki alanını değiştirin
-    path: '/', // yolunu değiştirin
+  res.cookie('jwt', 'deleted', {
+    expires: new Date(Date.now() + 1000),
+    httpOnly: true,
   })
+
   res.status(200).json({ message: 'success' })
 }
 
