@@ -73,14 +73,14 @@ export const compareTokenAndUserId = catchAsync(async (req, res, next) => {
       secure: true,
       sameSite: 'none',
       path: '/',
-      domain: 'techbooks-production.up.railway.app',
+      domain: '.techbooks-production.up.railway.app',
     })
     res.clearCookie('jwt', {
       httpOnly: true,
       secure: true,
       sameSite: 'none',
       path: '/',
-      domain: 'techbooks.vercel.app',
+      domain: '.techbooks.vercel.app',
     })
 
     return next(
@@ -101,14 +101,14 @@ export const logOut = (req, res) => {
     secure: true,
     sameSite: 'none',
     path: '/',
-    domain: 'techbooks-production.up.railway.app',
+    domain: '.techbooks-production.up.railway.app',
   })
   res.clearCookie('jwt', {
     httpOnly: true,
     secure: true,
     sameSite: 'none',
     path: '/',
-    domain: 'techbooks.vercel.app',
+    domain: '.techbooks.vercel.app',
   })
 
   res.status(200).json({ message: 'success' })
