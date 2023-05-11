@@ -45,7 +45,7 @@ const BlogDetail = () => {
         ) : (
           <div className={styles.detailContainer}>
             <img
-              src={`https://techbook-react-express.onrender.com//${data.image}`}
+              src={`https://techbook-react-express.onrender.com/${data.image}`}
               alt={data.title}
             />
             <h1 className={styles.title}>{data.title}</h1>

@@ -87,7 +87,7 @@ const Comments = ({ data }) => {
                   <FaUserCircle />
                 ) : (
                   <img
-                    src={`https://techbook-react-express.onrender.com//${el.user.photo}`}
+                    src={`https://techbook-react-express.onrender.com/${el.user.photo}`}
                     alt={el.user.name}
                   />
                 )}
