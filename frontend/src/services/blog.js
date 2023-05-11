@@ -1,23 +1,29 @@
 export const createBlog = async (formData) => {
   try {
-    const response = await fetch('/api/v1/blogs', {
-      method: 'POST',
-      body: formData,
-      credentials: 'include',
-    })
+    const response = await fetch(
+      'https://techbook-react-express.onrender.com/api/v1/blogs',
+      {
+        method: 'POST',
+        body: formData,
+        credentials: 'include',
+      }
+    )
 
     return response.json()
   } catch (error) {}
 }
 export const getBlog = async (id) => {
   try {
-    const response = await fetch(`/api/v1/blogs/${id}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include',
-    })
+    const response = await fetch(
+      `https://techbook-react-express.onrender.com/api/v1/blogs/${id}`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+      }
+    )
 
     return response.json()
   } catch (error) {
@@ -27,13 +33,18 @@ export const getBlog = async (id) => {
 
 export const getAllBlogs = async (query) => {
   try {
-    const response = await fetch(`/api/v1/blogs${query ? query : ''}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include',
-    })
+    const response = await fetch(
+      `https://techbook-react-express.onrender.com/api/v1/blogs${
+        query ? query : ''
+      }`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+      }
+    )
 
     return response.json()
   } catch (error) {
