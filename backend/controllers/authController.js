@@ -82,7 +82,10 @@ export const compareTokenAndUserId = catchAsync(async (req, res, next) => {
 // clear jwt from cookie
 export const logOut = (req, res) => {
   // res.cookie('jwt', '', { maxAge: 1 })
-  res.clearCookie('jwt')
+  res.clearCookie('jwt', {
+    domain: 'https://techbooks.vercel.app', // yerel etki alanını değiştirin
+    path: '/', // yolunu değiştirin
+  })
   res.status(200).json({ message: 'success' })
 }
 
