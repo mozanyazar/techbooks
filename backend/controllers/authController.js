@@ -23,6 +23,7 @@ const createAndSendToken = (user, statusCode, res) => {
   if (process.env.NODE_ENV === 'production') {
     cookieOptions.secure = true
     cookieOptions.sameSite = 'none'
+    cookieOptions.domain = 'techbooks.vercel.app'
   }
   // remove the password
   user.password = undefined
