@@ -10,10 +10,12 @@ import img3 from '../../../images/22.png'
 import Reviews from './Reviews'
 import BasketLoading from '../../../Loading/BasketLoading'
 import { updateUserBasket } from '../../../store/basketSlice'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUser } from '../../../store/userSlice'
 
 const Product = () => {
   const dispatch = useDispatch()
+  const user = useSelector(getUser)
   const { pathname } = useLocation()
   const [data, setData] = useState()
   const [review, setReview] = useState()
@@ -112,6 +114,7 @@ const Product = () => {
                 </button>
               ) : (
                 <button
+                  disabled={user.length === 0}
                   onClick={(e) => addToCard(e)}
                   className={styles.addCart}
                 >

@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import styles from './ProductCard.module.css'
 import { Link } from 'react-router-dom'
 import { updateUserBasket } from '../../store/basketSlice'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import BasketLoading from '../../Loading/BasketLoading'
+import { getUser } from '../../store/userSlice'
 
 const ProductCard = ({
   title,
@@ -17,6 +18,7 @@ const ProductCard = ({
   slug,
   _id,
 }) => {
+  const user = useSelector(getUser)
   const dispatch = useDispatch()
   const [click, setClick] = useState(false)
 
@@ -43,7 +45,7 @@ const ProductCard = ({
     >
       <div className={styles.image}>
         <img
-          src={`https://techbook-react-express.onrender.com//${image}`}
+          src={`https://techbook-react-express.onrender.com/${image}`}
           alt={title}
         />
       </div>
@@ -61,6 +63,7 @@ const ProductCard = ({
             </button>
           ) : (
             <button
+              disabled={user.length === 0}
               onClick={addToCart}
               className={styles.addCard}
             >
