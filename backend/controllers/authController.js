@@ -23,7 +23,6 @@ const createAndSendToken = (user, statusCode, res) => {
   if (process.env.NODE_ENV === 'production') {
     cookieOptions.secure = true
     cookieOptions.sameSite = 'none'
-    cookieOptions.domain = '.techbooks.vercel.app'
   }
   // remove the password
   user.password = undefined
@@ -69,7 +68,7 @@ export const compareTokenAndUserId = catchAsync(async (req, res, next) => {
 
   if (!currentUser) {
     // clear the cookie
-    res.clearCookie('jwt')
+    res.clearCookie()
     return next(
       new AppError('the user belonging to this token does no longer exist', 401)
     )
@@ -83,7 +82,7 @@ export const compareTokenAndUserId = catchAsync(async (req, res, next) => {
 // clear jwt from cookie
 export const logOut = (req, res) => {
   // res.cookie('jwt', '', { maxAge: 1 })
-  res.clearCookie('jwt')
+  res.clearCookie()
 
   res.status(200).json({ message: 'success' })
 }
