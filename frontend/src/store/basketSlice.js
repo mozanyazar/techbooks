@@ -28,7 +28,7 @@ export const removeItemFromBasket = createAsyncThunk(
   }
 )
 
-const userSlice = createSlice({
+const basketSlice = createSlice({
   name: 'basket',
   initialState,
   reducers: {},
@@ -61,5 +61,4 @@ const userSlice = createSlice({
 export const basket = (state) => state.basket.basket
 export const getBasketStatus = (state) => state.basket.status
 export const getBasketError = (state) => state.basket.error
-
-export default userSlice.reducer
+export default basketSlice.reducer
