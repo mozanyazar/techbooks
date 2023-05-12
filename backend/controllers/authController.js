@@ -19,10 +19,11 @@ const createAndSendToken = (user, statusCode, res) => {
       Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
     ),
     httpOnly: true,
+    path: '/',
   }
   if (process.env.NODE_ENV === 'production') {
     cookieOptions.secure = true
-    cookieOptions.sameSite = 'strict'
+    cookieOptions.sameSite = 'none'
   }
   // remove the password
   user.password = undefined
