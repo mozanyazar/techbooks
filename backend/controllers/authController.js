@@ -82,7 +82,7 @@ export const compareTokenAndUserId = catchAsync(async (req, res, next) => {
 
 // clear jwt from cookie
 export const logOut = (req, res) => {
-  res.clearCookie('jwt')
+  res.clearCookie('jwt', { secure: true, sameSite: 'none' })
 
   return res.status(204).json({ message: 'logout...' })
 }
