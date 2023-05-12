@@ -46,7 +46,7 @@ export const userLogout = async () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({}),
-        credentials: 'same-origin',
+        credentials: 'include',
       }
     )
 
