@@ -69,7 +69,7 @@ export const compareTokenAndUserId = catchAsync(async (req, res, next) => {
 
   if (!currentUser) {
     // clear the cookie
-    res.clearCookie('jwt')
+    res.clearCookie('jwt', { secure: true, sameSite: 'none' })
     return next(
       new AppError('the user belonging to this token does no longer exist', 401)
     )
