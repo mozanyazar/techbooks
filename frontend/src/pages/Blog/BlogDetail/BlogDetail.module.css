@@ -145,12 +145,13 @@
   display: flex;
   max-height: 130px;
   overflow-y: scroll;
+  flex-direction: column;
 }
 .comment p {
   font-size: 14px;
   font-family: var(--font-primary);
   letter-spacing: 0.01em;
-  margin-top: 15px;
+  margin-top: 7px;
   height: max-content;
 }
 .commentDate {
@@ -268,5 +269,10 @@
   }
   .commentLeft {
     align-items: flex-start;
+  }
+}
+@media screen and (max-width:500px) {
+  .userName {
+  max-width: 82px;
   }
 }
