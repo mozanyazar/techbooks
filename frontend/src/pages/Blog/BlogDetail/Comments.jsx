@@ -96,6 +96,7 @@ const Comments = ({ data }) => {
             </div>
 
             <div className={styles.comment}>
+              comment: <br />
               <p>{el.comment}</p>
               <span className={styles.commentDate}>
                 {formatDate(el.createdAt, 'DD-MM-YYYY hh:mm')}

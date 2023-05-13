@@ -65,6 +65,7 @@ const Reviews = ({ review, data, getBook }) => {
               <span>{review.user.name}</span>
             </div>
             <div className={styles.rightText}>
+              Review: <br />
               <p className={styles.reviewText}>{review.review}</p>
               <div className={styles.reviewRate}>
                 <ReactStars
