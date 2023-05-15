@@ -1,0 +1,83 @@
+@import url('../../index.css');
+
+.pageError {
+  height: clamp(125px, 25vw, 250px);
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-color: var(--dark-blue);
+  font-family: 'Cardo';
+  font-style: normal;
+  font-weight: 700;
+  font-size: clamp(35px, 4.3535vw, 50px);
+  line-height: 55px;
+  text-align: center;
+  letter-spacing: -0.02em;
+
+  color: #f5f8fc;
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: clamp(500px, 111vw, 1124px);
+  background: url('../../images/bg.png');
+}
+.container img {
+  margin-top: clamp(100px, 20vw, 200px);
+  width: clamp(300px, 44vw, 471px);
+}
+.container p {
+  font-family: 'Cardo';
+  font-style: normal;
+  font-weight: 700;
+  font-size: clamp(28px, 3.66vw, 40px);
+  text-align: center;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #1b3764;
+  margin-top: 33px;
+}
+
+.container span {
+  max-width: 589px;
+  width: 98%;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: clamp(16px, 1.81vw, 19px);
+  line-height: 1.1;
+  text-align: center;
+  letter-spacing: -0.01em;
+  margin: 0 auto;
+  margin-top: 10px;
+  color: #969aa0;
+}
+.container a {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 220px;
+  height: 65px;
+  font-family: 'Cardo';
+  font-style: normal;
+  font-weight: 700;
+  font-size: clamp(16px, 1.81vw, 19px);
+  background: #ffca42;
+  color: #1b3764;
+  margin-top: 41px;
+}
+
+@media screen and (max-width: 850px) {
+  .mainContent {
+    background-size: cover;
+    align-items: center;
+    justify-content: center;
+  }
+  .container img {
+    margin-top: 0;
+  }
+}

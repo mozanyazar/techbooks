@@ -43,7 +43,9 @@
   justify-content: space-between;
   margin-top: 50px;
 }
-
+.cardsWrapper a div:last-child {
+  flex-direction: column;
+}
 @media screen and (max-width: 900px) {
   .cardsWrapper {
     scroll-snap-type: x mandatory;
