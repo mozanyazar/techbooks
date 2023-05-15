@@ -40,6 +40,11 @@ button {
 button:disabled {
   cursor: not-allowed;
 }
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
 .paragraph {
   font-size: 19px;

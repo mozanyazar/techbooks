@@ -1,0 +1,191 @@
+@import url('../../index.css');
+
+.footer {
+  width: 100%;
+  margin-top: auto;
+  background-color: var(--dark-blue);
+}
+.footerInner {
+  padding-top: 83px;
+  padding-bottom: 23px;
+  max-width: 1300px;
+  margin: 0 auto;
+  width: 98%;
+  display: flex;
+  flex-direction: column;
+}
+
+.footerTop {
+  display: flex;
+  padding-bottom: 50px;
+}
+.footerTopLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 27px;
+}
+.footerLogos {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.footerLogos a {
+  font-family: var(--font-secondary);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 38px;
+  display: flex;
+  color: #ffffff;
+}
+.footerTopRight {
+  display: flex;
+  flex-direction: column;
+  margin-left: 181px;
+}
+.footerTopRight h4 {
+  font-size: 30px;
+  line-height: 38px;
+  color: #ffffff;
+  font-family: var(--font-secondary);
+}
+.footerTopRight div {
+  display: flex;
+  flex-direction: column;
+}
+.footerTopRight div p {
+  margin: 20px 0;
+  font-size: 20px;
+  color: #ffffff;
+  font-family: var(--font-primary);
+  font-style: italic;
+}
+.footerSocials {
+  display: flex;
+  gap: 10px;
+}
+.footerTopRight .social {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  margin-left: 100px;
+  width: 500px;
+}
+.form textarea {
+  width: 100%;
+  min-height: 91px;
+  max-height: 91px;
+  min-width: 500px;
+  max-width: 100%;
+  background: transparent;
+  border: 1px solid #627493;
+  box-sizing: border-box;
+  padding: 20px;
+  color: white;
+  outline-color: #989ba0;
+}
+.form button {
+  width: max-content;
+  padding: 0 40px;
+  height: 35px;
+  background-color: var(--yellow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-secondary);
+  font-size: 14px;
+  align-self: flex-end;
+  color: var(--dark-blue);
+  text-transform: capitalize;
+  font-weight: 500;
+  margin-top: 10px;
+}
+.footerBottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 20px;
+  border-top: 1px solid #b4c7e75e;
+}
+.footerBottom a {
+  font-family: var(--font-secondary);
+  color: #b4c7e7;
+  letter-spacing: -0.01em;
+  font-size: clamp(15px, 1.61vw, 17px);
+  line-height: 2;
+  font-weight: 400;
+}
+.footerBottom a b {
+  color: white;
+  font-weight: 500;
+}
+.footerBottom a b:first-child {
+  position: relative;
+  right: 6px;
+}
+@media screen and (max-width: 1300px) {
+  .form,
+  .footerTopRight {
+    margin-right: 0;
+    margin-left: 0;
+  }
+  .footerTop {
+    justify-content: space-between;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .footerLogos a,
+  .footerTopRight h4 {
+    font-size: 28px;
+    line-height: normal;
+  }
+  .footerSocials a img {
+    width: 45px;
+  }
+  .form {
+    width: 400px;
+  }
+  .form textarea {
+    min-width: 100%;
+  }
+}
+@media screen and (max-width: 900px) {
+  .footerTop {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 20px;
+  }
+  .form {
+    grid-row: 2;
+    grid-column: 2;
+  }
+}
+
+@media screen and (max-width: 668px) {
+  .footerTop {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  .footerTopRight {
+    padding-top: 10px;
+    border-top: 1px solid #627493;
+  }
+  .footerTopRight div p {
+    margin: 10px 0;
+  }
+}
+@media screen and (max-width: 550px) {
+  .footerTop {
+    width: 98%;
+  }
+  .form {
+    width: 98%;
+  }
+}

@@ -17,6 +17,7 @@ import ProtectedRoute from './ProtectedRoute/ProtectedRoute'
 // Loading animation
 import Loading from './Loading/Loading'
 import { getUserBasket } from './store/basketSlice'
+import Footer from './components/Footer/Footer'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -167,6 +168,7 @@ const App = () => {
           }
         />
       </Routes>
+      <Footer />
     </BrowserRouter>
   )
 }
