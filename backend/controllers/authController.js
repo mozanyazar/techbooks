@@ -6,6 +6,9 @@ import jwt from 'jsonwebtoken'
 import AppError from '../utils/AppError.js'
 import nodemailer from 'nodemailer'
 import Basket from '../models/basketModel.js'
+import dotenv from 'dotenv'
+
+dotenv.config({ path: './.env' })
 
 const signToken = (id) =>
   jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -125,7 +128,7 @@ export const forgotPassword = async (req, res, next) => {
     service: 'gmail',
     auth: {
       user: 'testdenemenodejs@gmail.com',
-      pass: 'dbmrkjjcfnixxsdj',
+      pass: process.env.EMAIL_PASSWORD,
     },
   })
 
@@ -134,7 +137,7 @@ export const forgotPassword = async (req, res, next) => {
     to: `${email}`,
     subject: 'Şifre Sıfırlama İsteği',
     html: `<p style="color:red;">Merhaba,</p>
-    <p>Şifrenizi sıfırlama talebinde bulundunuz. Buraya tıklayınız <a href="http://localhost:3000/reset_password/${resetToken}">buraya tıklayın</a></p>
+    <p>Şifrenizi sıfırlama talebinde bulundunuz. Buraya tıklayınız <a href="https://techbooks.vercel.app/reset_password/${resetToken}">buraya tıklayın</a></p>
     <p>Teşekkür ederiz.</p>`,
   }
 
