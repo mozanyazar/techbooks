@@ -1,7 +1,6 @@
 @import url('../../index.css');
 
 .container {
-  height: calc(100vh - 90px);
   display: flex;
   flex-direction: column;
 }
@@ -23,6 +22,7 @@
 
 .formContainer {
   max-width: 1300px;
+  padding: 40px 0;
   margin: 0 auto;
   display: flex;
   align-items: center;
