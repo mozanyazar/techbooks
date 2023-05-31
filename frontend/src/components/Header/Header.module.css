@@ -69,6 +69,10 @@
   line-height: 21.25px;
   display: flex;
   align-items: center;
+  transition: all .3s ease;
+}
+.pagesList li a:hover{
+  color: var(--yellow);
 }
 .pagesList li a svg {
   position: relative;
@@ -220,7 +224,12 @@
     width: 100%;
     font-size: 34px;
     padding: 20px 10px;
+    position: relative;
   }
+  .navbar .pagesList li a:hover{
+    color: var(--yellow);
+  }
+ 
   .pagesList .basketButton {
     background: var(--dark-blue);
     width: 75px;

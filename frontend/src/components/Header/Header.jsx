@@ -110,10 +110,10 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <Link to={'/'}>Forum</Link>
+              <Link to={'/comingsoon'}>Forum</Link>
             </li>
             <li>
-              <Link onClick={toggleHandler}>Contact</Link>
+              <Link to={'/comingsoon'} onClick={toggleHandler}>Contact</Link>
             </li>
             {user.length !== 0 && (
               <button

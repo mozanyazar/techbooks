@@ -1,0 +1,17 @@
+@import url('../../index.css');
+
+.container{
+    min-height: 70vh;
+    background-color: var(--dark-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container .text{
+    font-family: var(--font-primary);
+    font-size: clamp(40px,6vw,60px);
+    color: var(--yellow);
+    font-style: italic;
+
+}
