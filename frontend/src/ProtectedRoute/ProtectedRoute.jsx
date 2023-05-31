@@ -14,8 +14,9 @@ const ProtectedRoute = ({ children, isUser }) => {
     dispatch(isUserExist())
   }, [dispatch])
 
+
   // if we want the user exist
-  if (userStatus === 'succeeded' && !isUser) {
+  if (!isUser) {
     if (user.length === 0) {
       return <Navigate to="/login" />
     }
