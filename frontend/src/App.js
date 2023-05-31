@@ -18,6 +18,7 @@ import ProtectedRoute from './ProtectedRoute/ProtectedRoute'
 import Loading from './Loading/Loading'
 import { getUserBasket } from './store/basketSlice'
 import Footer from './components/Footer/Footer'
+import ComingSoon from './pages/ComingSoon/ComingSoon'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -90,6 +91,10 @@ const App = () => {
               <BlogDetail />
             </Suspense>
           }
+        />
+        <Route
+          path="/comingsoon"
+          element={<ComingSoon />}
         />
         <Route
           path="/products/:slug"
