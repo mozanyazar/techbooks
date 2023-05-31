@@ -31,7 +31,9 @@ body::-webkit-scrollbar-thumb {
   background-color: var(--gray-paragraph);
   border-radius: 100px;
 }
-
+input[type='file'] {
+  cursor: pointer;
+}
 button {
   cursor: pointer;
   background-color: transparent;
