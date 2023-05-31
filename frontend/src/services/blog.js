@@ -1,13 +1,10 @@
 export const createBlog = async (formData) => {
   try {
-    const response = await fetch(
-      'https://techbooks-production.up.railway.app/api/v1/blogs',
-      {
-        method: 'POST',
-        body: formData,
-        credentials: 'include',
-      }
-    )
+    const response = await fetch(`${process.env.REACT_APP_URL}api/v1/blogs`, {
+      method: 'POST',
+      body: formData,
+      credentials: 'include',
+    })
 
     return response.json()
   } catch (error) {}
@@ -15,7 +12,7 @@ export const createBlog = async (formData) => {
 export const getBlog = async (id) => {
   try {
     const response = await fetch(
-      `https://techbooks-production.up.railway.app/api/v1/blogs/${id}`,
+      `${process.env.REACT_APP_URL}api/v1/blogs/${id}`,
       {
         method: 'GET',
         headers: {
@@ -34,9 +31,7 @@ export const getBlog = async (id) => {
 export const getAllBlogs = async (query) => {
   try {
     const response = await fetch(
-      `https://techbooks-production.up.railway.app/api/v1/blogs${
-        query ? query : ''
-      }`,
+      `${process.env.REACT_APP_URL}api/v1/blogs${query ? query : ''}`,
       {
         method: 'GET',
         headers: {

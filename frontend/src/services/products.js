@@ -16,9 +16,7 @@ export const createProduct = async (formData) => {
 export const getAllProducts = async (query) => {
   try {
     const response = await fetch(
-      `https://techbooks-production.up.railway.app/api/v1/products${
-        query ? query : ''
-      }`,
+      `${process.env.REACT_APP_URL}api/v1/products${query ? query : ''}`,
       {
         method: 'GET',
         headers: {
@@ -35,16 +33,13 @@ export const getAllProducts = async (query) => {
 }
 export const getProduct = async (query) => {
   try {
-    const response = await fetch(
-      `https://techbooks-production.up.railway.app/api/v1${query}`,
-      {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-      }
-    )
+    const response = await fetch(`${process.env.REACT_APP_URL}api/v1${query}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    })
 
     return response.json()
   } catch (error) {

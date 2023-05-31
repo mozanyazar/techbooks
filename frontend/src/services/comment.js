@@ -1,7 +1,7 @@
 export const createComment = async (data) => {
   try {
     const response = await fetch(
-      'https://techbooks-production.up.railway.app/api/v1/comments',
+      `${process.env.REACT_APP_URL}api/v1/comments`,
       {
         method: 'POST',
         headers: {
