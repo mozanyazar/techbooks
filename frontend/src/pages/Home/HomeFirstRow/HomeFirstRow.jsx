@@ -1,9 +1,10 @@
 import React from 'react'
 import styles from './HomeFirstRow.module.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import book from '../../../images/firstBook.png'
 
 export const HomeFirstRow = () => {
+  const navigate = useNavigate()
   return (
     <section className={styles.firstContainer}>
       <div className={styles.firstInner}>
@@ -18,7 +19,7 @@ export const HomeFirstRow = () => {
             </p>
           </article>
           <div className={styles.buttonGroup}>
-            <button>Order Today</button>
+            <button onClick={() => navigate('/products')}>Order Today</button>
             <Link>Read Free Demo</Link>
           </div>
 

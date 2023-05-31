@@ -18,11 +18,13 @@ export const HomeThirdRow = () => {
           <p className={styles.desc}>
             Hello, I'm Mahmut Ozan Yazar. I am a passionate front-end developer
             from Turkey. <br />
-            For about a year, I've been providing front-end, UI, and UX support
-            to a company called "Educational Networks". <br />
+            I have been working as a frontend developer at "Educational
+            Networks," a company based in the United States, for over a year.
+            Within the scope of my work, I have been completed in 55 projects.
+            <br />
             <span>
               This website does not have any commercial purpose and the design
-              belongs to Web Flow. I made some changes.{' '}
+              belongs to Victor Flow. I made some changes.{' '}
               <Link
                 target="_blank"
                 to="https://www.figma.com/community/file/1187662275043405075"

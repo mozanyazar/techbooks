@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import styles from './HomeSecondRow.module.css'
 import image from '../../../images/firstBook.png'
+import { useNavigate } from 'react-router-dom'
 
 const HomeSecondRow = () => {
+  const navigate = useNavigate()
   const [data, setData] = useState([
     {
       title: "Atomic's One",
@@ -44,7 +46,12 @@ const HomeSecondRow = () => {
                       Pages: <br /> <span>{book.pages}</span>
                     </p>
                   </div>
-                  <button className={styles.orderButton}>Order Today</button>
+                  <button
+                    className={styles.orderButton}
+                    onClick={() => navigate('/products')}
+                  >
+                    Order Today
+                  </button>
                 </div>
               </div>
             )
