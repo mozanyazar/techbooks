@@ -22,23 +22,23 @@ const app = express()
 app.use(express.static('uploads/images'))
 
 if (process.env.NODE_ENV === 'development') {
-  app.use(morgan('dev'))
+   app.use(morgan('dev'))
 }
 
 app.use(fileUpload())
 app.use(cookieParser())
 app.use(helmet())
 app.use(
-  cors({
-    origin: ['https://techbooks.vercel.app', 'http://localhost:3000'],
-    credentials: true,
-    maxAge: 30 * 24 * 60 * 60,
-  })
+   cors({
+      origin: ['https://techbooks.vercel.app', 'http://localhost:3000'],
+      credentials: true,
+      maxAge: 30 * 24 * 60 * 60,
+   })
 )
 const limiter = rateLimit({
-  max: 2000,
-  windowMs: 60 * 60 * 1000,
-  message: 'Too many requests from this IP, please try again in an hour',
+   max: 2000,
+   windowMs: 60 * 60 * 1000,
+   message: 'Too many requests from this IP, please try again in an hour',
 })
 app.get('/', (req, res) => {
    res.send('Hello World!')
@@ -48,16 +48,9 @@ app.use(express.json({ limit: '100kb' }))
 app.use(mongoSanitize())
 app.use(xss())
 app.use(
-  hpp({
-    whitelist: [
-      'duration',
-      'ratingsQuantity',
-      'ratingAverage',
-      'maxGroupSize',
-      'difficulty',
-      'price',
-    ],
-  })
+   hpp({
+      whitelist: ['duration', 'ratingsQuantity', 'ratingAverage', 'maxGroupSize', 'difficulty', 'price'],
+   })
 )
 
 app.use('/api/v1/users', authRouter)
@@ -67,7 +60,7 @@ app.use('/api/v1/products', productRouter)
 app.use('/api/v1/reviews', reviewRouter)
 app.use('/api/v1/basket', basketRouter)
 app.get('/', (req, res) => {
-  res.send('hello !')
+   res.send('hello !')
 })
 app.use(errorHandler)
 
