@@ -40,7 +40,9 @@ const limiter = rateLimit({
   windowMs: 60 * 60 * 1000,
   message: 'Too many requests from this IP, please try again in an hour',
 })
-
+app.get('/', (req, res) => {
+   res.send('Hello World!')
+})
 app.use('/api', limiter)
 app.use(express.json({ limit: '100kb' }))
 app.use(mongoSanitize())
